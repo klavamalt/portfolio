@@ -214,8 +214,9 @@ function renderRoute(moveFocus = false) {
   about.hidden = !showContacts;
   projectPage.hidden = !project;
 
+  const currentDockHash = home.hidden ? location.hash : '#cases';
   for (const link of document.querySelectorAll('.dock a[href^="#"]')) {
-    if (link.hash === location.hash) link.setAttribute('aria-current', 'page');
+    if (link.hash === currentDockHash) link.setAttribute('aria-current', 'page');
     else link.removeAttribute('aria-current');
   }
   status.hidden = true;
