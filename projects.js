@@ -436,7 +436,7 @@ const projects = [
         ],
         "gallery": [
           {
-            "file": "drophunter-screens-figma.png",
+            "file": "drophunter-screens-3x.webp",
             "alt": "Три экрана приложения",
             "height": 500
           },
