@@ -115,6 +115,9 @@ function projectSection(section, title) {
 function renderProject(project) {
   const title = element('h1', 'visually-hidden', project.title);
   title.tabIndex = -1;
+  const back = element('a', 'project-back', '←');
+  back.href = '#cases';
+  back.setAttribute('aria-label', 'На главную');
   const hero = image(project.hero, 'Обложка проекта «' + project.title.split(' | ')[0] + '»', 'project-hero');
   const body = element('div', 'project-content');
   const menu = element('nav', 'project-menu');
@@ -140,7 +143,7 @@ function renderProject(project) {
 
   body.append(menu, sections);
   projectPage.dataset.project = project.id;
-  projectPage.replaceChildren(title, hero, body);
+  projectPage.replaceChildren(title, back, hero, body);
 }
 
 function updateProjectMenu() {

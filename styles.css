@@ -265,7 +265,23 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .dock .pink:is(:hover, :focus-visible) { background: #e00061; }
 .contact-status { position: fixed; z-index: 6; bottom: clamp(85px, 15vh, 125px); left: 50%; translate: -50% 0; width: max-content; max-width: 90vw; padding: 12px 18px; border-radius: 14px; background: #181818; color: white; }
 
-.project { container-type: inline-size; font-family: "Portfolio Suisse", "Portfolio Inter", Inter, sans-serif; padding-bottom: 140px; }
+.project { position: relative; container-type: inline-size; font-family: "Portfolio Suisse", "Portfolio Inter", Inter, sans-serif; padding-bottom: 140px; }
+.project-back {
+  position: absolute;
+  z-index: 1;
+  top: clamp(16px, 3vh, 28px);
+  left: var(--edge);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  color: #454545;
+  font: 24px/1 Arial, sans-serif;
+  transition: background-color .18s ease, color .18s ease;
+}
+.project-back:is(:hover, :focus-visible) { background: #ececec; color: #181818; }
 .project-hero { width: 100%; max-height: min(68svh, max(220px, 100svh - 260px)); aspect-ratio: 1280 / 629; object-fit: cover; }
 .project[data-project="context"] .project-hero {
   object-fit: contain;
