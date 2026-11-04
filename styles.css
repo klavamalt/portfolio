@@ -65,7 +65,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
   gap: 0 calc(18 * var(--unit));
 }
 
-.avatar-slot { grid-row: span 2; aspect-ratio: 1; }
+.avatar-slot { grid-row: span 2; align-self: start; width: 95%; aspect-ratio: 1; }
 
 .avatar {
   position: relative;
