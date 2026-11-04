@@ -413,7 +413,7 @@ const projects = [
         ],
         "gallery": [
           {
-            "file": "drophunter-posters-figma.png",
+            "file": "drophunter-posters-3x.png",
             "alt": "Три рекламных постера",
             "height": 405
           },
