@@ -203,7 +203,7 @@ const projects = [
             "height": 405
           },
           {
-            "file": "art-168-50527.png",
+            "file": "sitik-logo-grid.svg",
             "alt": "Логотип и сетка"
           },
           {
