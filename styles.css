@@ -192,7 +192,8 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 
 .case-card {
   position: relative;
-  flex: 0 0 calc(471.31 * var(--unit) * .97);
+  --card-scale: .97;
+  flex: 0 0 calc(471.31 * var(--unit) * var(--card-scale));
   aspect-ratio: 471.31 / 650;
   overflow: hidden;
   isolation: isolate;
@@ -254,6 +255,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .dock .pill:nth-child(2) { min-width: calc(123.625 * var(--unit)); }
 @media (min-width: 1600px) {
   .home { --home-scale: .95px; }
+  .case-card { --card-scale: calc(.97 * 1.02); }
 }
 
 .dock [aria-current="page"] { background: #878787; color: #fff; }

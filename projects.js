@@ -377,7 +377,7 @@ const projects = [
         ],
         "gallery": [
           {
-            "file": "drophunter-165-5089.png",
+            "file": "drophunter-product-figma.png",
             "alt": "Карточка товара Miu Miu"
           },
           {
@@ -387,7 +387,8 @@ const projects = [
           {
             "file": "drophunter-bags.webp",
             "alt": "Кампания Drophunter",
-            "height": 500
+            "height": 500,
+            "crop": [0, -0.71, 100, 113.96]
           }
         ]
       },
@@ -412,16 +413,16 @@ const projects = [
         ],
         "gallery": [
           {
-            "file": "drophunter-166-18224.png",
+            "file": "drophunter-posters-figma.png",
             "alt": "Три рекламных постера",
             "height": 405
           },
           {
-            "file": "drophunter-165-5873.png",
+            "file": "drophunter-selection-figma.png",
             "alt": "Экран выбора товаров"
           },
           {
-            "file": "drophunter-165-9034.png",
+            "file": "drophunter-deals-figma.png",
             "alt": "Профиль и активные сделки"
           }
         ]
@@ -435,14 +436,15 @@ const projects = [
         ],
         "gallery": [
           {
-            "file": "drophunter-166-27356.png",
+            "file": "drophunter-screens-figma.png",
             "alt": "Три экрана приложения",
             "height": 500
           },
           {
             "file": "drophunter-campaign.webp",
             "alt": "Рекламная графика Drophunter",
-            "height": 500
+            "height": 500,
+            "crop": [0, -10.61, 100, 113.85]
           }
         ]
       }
