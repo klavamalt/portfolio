@@ -7,10 +7,14 @@
   <title>Эмилия Коростелева — портфолио</title>
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="stylesheet" href="styles.css">
+  <noscript><style>.site-loader { display: none; } body.is-loading { overflow: auto; }</style></noscript>
   <script src="projects.js" defer></script>
   <script src="app.js" defer></script>
 </head>
-<body>
+<body class="is-loading">
+  <div class="site-loader" role="status" aria-label="Загрузка портфолио">
+    <video src="assets/preloader.mp4" muted playsinline preload="none" aria-hidden="true"></video>
+  </div>
   <main id="main">
     <section class="home" id="home" aria-labelledby="name">
       <div class="profile">

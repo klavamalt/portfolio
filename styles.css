@@ -38,6 +38,26 @@ button { font: inherit; }
 :focus-visible { outline: 3px solid #4593f7; outline-offset: 3px; }
 img { display: block; }
 
+body.is-loading { overflow: hidden; }
+.site-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: #000 url("assets/favicon.png") center / 64px no-repeat;
+}
+.site-loader video { width: 100%; height: 100%; object-fit: cover; opacity: 0; }
+.site-loader video.is-playing { opacity: 1; }
+.site-loader.is-finished { opacity: 0; pointer-events: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .site-loader { transition: opacity .5s ease; }
+  .avatar-slot:not(:hover) .avatar { animation: avatar-sway 5s ease-in-out infinite; }
+}
+@keyframes avatar-sway {
+  0%, 100% { rotate: 0deg; }
+  25% { rotate: 1.8deg; }
+  75% { rotate: -1.8deg; }
+}
+
 body.is-home { overflow: hidden; overscroll-behavior: none; }
 
 .home {
@@ -273,8 +293,8 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .art { position: relative; overflow: hidden; aspect-ratio: 497 / 405; border-radius: clamp(18px, 2.34vw, 30px); }
 .art-wide { grid-column: 1 / -1; aspect-ratio: 1014 / var(--art-height, 405); }
 .art :is(img, video) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.art:has(video[src$="/context-story.mp4"]) { background: #f5fe00; }
-.art video[src$="/context-story.mp4"] { clip-path: inset(0 round 6.4% / 7.9%); }
+.art:has(video[data-file="context-story.mp4"]) { background: #f5fe00; }
+.art video[data-file="context-story.mp4"] { clip-path: inset(0 round 6.4% / 7.9%); }
 .art img.art-crop { inset: auto; object-fit: fill; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 

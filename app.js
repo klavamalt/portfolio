@@ -5,6 +5,8 @@ const track = document.querySelector('.case-track');
 const status = document.querySelector('.contact-status');
 const homeTitle = document.title;
 const visibleProjects = projects.filter(project => !project.hidden);
+const loader = document.querySelector('.site-loader');
+const preloadedVideos = new Map();
 
 function element(tag, className, content) {
   const node = document.createElement(tag);
@@ -70,7 +72,8 @@ function artwork(art) {
   }
   if (art.video) {
     const video = element('video');
-    video.src = 'assets/' + art.video;
+    video.dataset.file = art.video;
+    video.src = preloadedVideos.get(art.video) || 'assets/' + art.video;
     video.poster = 'assets/' + art.file;
     video.muted = true;
     video.autoplay = true;
@@ -190,7 +193,7 @@ function syncCarousel() {
   cancelAnimationFrame(carouselFrame);
   lastFrameTime = undefined;
   travel = 0;
-  if (!home.hidden && !reducedMotion.matches) {
+  if (!home.hidden && !reducedMotion.matches && !document.body.classList.contains('is-loading')) {
     carouselFrame = requestAnimationFrame(advanceCarousel);
   }
 }
@@ -225,9 +228,67 @@ function renderRoute(moveFocus = false) {
   }
 }
 
+async function preloadPortfolio() {
+  const artwork = visibleProjects.flatMap(project => project.sections.flatMap(section => section.gallery));
+  const imageSources = new Set([
+    ...Array.from(document.querySelectorAll('main img'), img => img.src),
+    ...visibleProjects.flatMap(project => [project.cover, project.hero]).map(file => 'assets/' + file),
+    ...artwork.filter(art => art.file).map(art => 'assets/' + art.file),
+    'assets/rule.svg',
+    'assets/rule-active.svg',
+  ].map(src => new URL(src, document.baseURI).href));
+  const videos = new Set(artwork.filter(art => art.video).map(art => art.video));
+
+  await Promise.allSettled([
+    ...Array.from(imageSources, async src => {
+      const img = new Image();
+      img.src = src;
+      await img.decode();
+    }),
+    ...Array.from(videos, async file => {
+      const response = await fetch('assets/' + file);
+      if (!response.ok) throw new Error('Could not load ' + file);
+      preloadedVideos.set(file, URL.createObjectURL(await response.blob()));
+    }),
+    document.fonts.load('400 16px "Portfolio Inter"'),
+  ]);
+}
+
+function playLoader() {
+  if (reducedMotion.matches) return Promise.resolve();
+  const video = loader.querySelector('video');
+  return new Promise(resolve => {
+    const timer = setTimeout(finish, 6000);
+    function finish() {
+      clearTimeout(timer);
+      resolve();
+    }
+    video.addEventListener('ended', finish, { once: true });
+    video.addEventListener('error', finish, { once: true });
+    video.play().then(() => video.classList.add('is-playing'), finish);
+  });
+}
+
+async function openPortfolio() {
+  const main = document.querySelector('main');
+  const dock = document.querySelector('.dock');
+  main.inert = dock.inert = true;
+  await Promise.all([preloadPortfolio(), playLoader()]);
+  document.body.classList.remove('is-loading');
+  renderRoute();
+  main.inert = dock.inert = false;
+  if (reducedMotion.matches) loader.remove();
+  else {
+    loader.classList.add('is-finished');
+    setTimeout(() => loader.remove(), 500);
+  }
+}
+
 track.append(...visibleProjects.map(caseCard));
-renderRoute();
-window.addEventListener('hashchange', () => renderRoute(true));
+window.addEventListener('hashchange', () => {
+  if (!document.body.classList.contains('is-loading')) renderRoute(true);
+});
+openPortfolio();
 
 const avatarSlot = document.querySelector('.avatar-slot');
 const avatar = avatarSlot.querySelector('.avatar');
@@ -245,7 +306,7 @@ avatarSlot.addEventListener('pointermove', event => {
 });
 
 window.addEventListener('wheel', event => {
-  if (home.hidden || event.ctrlKey || !event.cancelable) return;
+  if (home.hidden || document.body.classList.contains('is-loading') || event.ctrlKey || !event.cancelable) return;
   const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? track.clientWidth : 1;
   const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
   const distance = delta * unit;
