@@ -362,7 +362,7 @@ const projects = [
     "icon": "💻",
     "color": "#e566e5",
     "cover": "drophunter-cover.webp",
-    "hero": "drophunter-hero.jpg",
+    "hero": "drophunter-hero-figma.webp",
     "sections": [
       {
         "notes": [
