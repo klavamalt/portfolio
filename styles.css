@@ -158,7 +158,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
   .profiles { --profile-button-unit: calc(var(--unit) * .98 * .98); }
 }
 
-.profiles .pill { --unit: var(--profile-button-unit); padding-inline: 0; font-size: calc(24 * var(--unit)); }
+.profiles .pill { --unit: calc(var(--profile-button-unit) * .98); padding-inline: 0; font-size: calc(24 * var(--unit)); }
 .profiles .pill:nth-child(1) { width: calc(166.5 * var(--unit)); }
 .profiles .pill:nth-child(2) { width: calc(94.5 * var(--unit)); }
 .profiles .pill:nth-child(3) { width: calc(151.5 * var(--unit)); }
