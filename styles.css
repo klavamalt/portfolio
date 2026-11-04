@@ -286,7 +286,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .project-notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 20px; }
 .project-notes h3 { margin-bottom: 6px; color: #626262; font-weight: 400; font-size: clamp(14px, 1.41vw, 18px); }
 .project-notes p, .project-menu button { font-size: clamp(16px, 1.56vw, 20px); line-height: 1.2; }
-.project-notes p { white-space: pre-line; }
+.project-notes p { max-inline-size: 38ch; white-space: pre-line; }
 .project[data-project="sitik"] #project-section-2 .project-notes h3 { font-size: calc(clamp(14px, 1.41vw, 18px) - 2px); }
 .project[data-project="sitik"] #project-section-2 .project-notes p { font-size: calc(clamp(16px, 1.56vw, 20px) - 2px); }
 .gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(12px, 1.56vw, 20px); }
