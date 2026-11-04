@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Портфолио Эмилии Коростелевой, продуктового и графического дизайнера.">
+  <title>Эмилия Коростелева — портфолио</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="projects.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main id="main">
+    <section class="home" id="home" aria-labelledby="name">
+      <div class="profile">
+        <header class="identity">
+          <div class="avatar-slot" aria-hidden="true">
+            <div class="avatar">
+              <img class="avatar-background" src="assets/avatar-background.png" alt="">
+              <img class="avatar-portrait" src="assets/avatar-portrait.png" alt="">
+            </div>
+          </div>
+          <div class="identity-title">
+            <h1 id="name" tabindex="-1">Эмилия Коростелева <span aria-hidden="true">🌺</span></h1>
+            <p>Product designer &amp; HSE DESIGN’28</p>
+          </div>
+          <div class="profiles" aria-label="Профили и резюме">
+            <a class="pill pink" href="https://t.me/ya_emiliia">Telegram</a>
+            <button class="pill blue" type="button" data-contact="cv">CV</button>
+            <button class="pill gold" type="button" data-contact="dprofile">Dprofile</button>
+          </div>
+        </header>
+        <div class="profile-copy">
+          <section>
+            <h2>Обо мне</h2>
+            <p>Проектирую цифровые продукты, собираю айдентику и превращаю сырые идеи в понятные интерфейсы. Учусь на дизайне цифровых продуктов на 3 курсе в НИУ ВШЭ</p>
+          </section>
+          <section>
+            <h2>Что использую в работе</h2>
+            <p>Figma, Adobe Photoshop &amp; Illustrator, Blender,<br> Codex, Tilda, Framer + чуть магии</p>
+          </section>
+        </div>
+      </div>
+      <div class="work">
+        <div class="case-track" tabindex="0" aria-label="Кейсы. Используйте стрелки для прокрутки."></div>
+      </div>
+    </section>
+
+    <section class="about" id="contacts" aria-label="Обо мне" tabindex="-1" hidden>
+      <div class="about-photo">
+        <img src="assets/about.jpg" alt="Эмилия Коростелева">
+      </div>
+      <div class="about-copy">
+        <section>
+          <h2>Что делаю?</h2>
+          <p>Разрабатываю цифровые продукты и визуальные системы. Работаю на стыке продуктового и графического дизайна: проектирую интерфейсы, собираю айдентику, ищу метафоры и превращаю их в понятную систему</p>
+        </section>
+        <section>
+          <h2>Сейчас</h2>
+          <p>Учусь на 3 курсе на направлении «Дизайн и продвижение цифрового продукта» в ВШЭ, параллельно собираю собственные проекты, фрилансю и развиваюсь в продуктовом дизайне</p>
+        </section>
+        <section>
+          <h2>Опыт</h2>
+          <p>Готова к стажировкам / проектам / командным работам</p>
+        </section>
+      </div>
+    </section>
+
+    <article class="project" id="project" hidden></article>
+  </main>
+
+  <nav class="dock" aria-label="Навигация">
+    <a class="pill" href="#contacts">Контакты</a>
+    <a class="pill" href="#cases">Кейсы</a>
+    <a class="pill pink" href="https://t.me/ya_emiliia">Написать</a>
+  </nav>
+  <p class="contact-status" role="status" hidden></p>
+</body>
+</html>
