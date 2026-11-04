@@ -267,21 +267,27 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 
 .project { position: relative; container-type: inline-size; font-family: "Portfolio Suisse", "Portfolio Inter", Inter, sans-serif; padding-bottom: 140px; }
 .project-back {
-  position: absolute;
-  z-index: 1;
-  top: clamp(16px, 3vh, 28px);
+  position: fixed;
+  z-index: 6;
+  bottom: var(--dock-bottom);
   left: var(--edge);
-  display: grid;
-  place-items: center;
-  width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   height: 44px;
-  border-radius: 50%;
-  background: #fff;
-  color: #454545;
-  font: 24px/1 Arial, sans-serif;
-  transition: background-color .18s ease, color .18s ease;
+  padding-inline: 13px;
+  border-radius: 999px;
+  background: #f4f4f4;
+  color: #111;
+  font-size: 17px;
+  transition: background-color .18s ease;
 }
-.project-back:is(:hover, :focus-visible) { background: #ececec; color: #181818; }
+.project-back-icon { color: #888; font: 21px/1 Arial, sans-serif; }
+.project-back:is(:hover, :focus-visible) { background: #e8e8e8; }
+@media (max-width: 650px) {
+  .project-back { bottom: calc(var(--dock-bottom) + 72px); }
+}
 .project-hero { width: 100%; max-height: min(68svh, max(220px, 100svh - 260px)); aspect-ratio: 1280 / 629; object-fit: cover; }
 .project[data-project="context"] .project-hero {
   object-fit: contain;
@@ -301,13 +307,12 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .project[data-project="digital-breakthrough"] .project-hero { object-position: center bottom; }
 .project[data-project="sitik"] .project-hero { object-position: center 60%; }
 .project-content { max-width: 1440px; margin-inline: auto; display: grid; grid-template-columns: 18.5% minmax(0, 1fr); padding: 60px 2.35% 0 0; }
-.project-menu { position: sticky; top: 25px; align-self: start; display: grid; gap: 12px; margin-left: calc(var(--edge) - max(0px, (100cqw - 1440px) / 2)); justify-items: start; }
-.project-menu img { flex: none; }
+.project-menu { position: sticky; top: 25px; align-self: start; display: grid; margin-left: calc(var(--edge) - max(0px, (100cqw - 1440px) / 2)); justify-items: start; }
 .project-sections { display: grid; gap: clamp(38px, 4.69vw, 60px); }
 .project-section { display: grid; gap: 40px; scroll-margin-top: 30px; }
 .project-notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 20px; }
 .project-notes h3 { margin-bottom: 6px; color: #626262; font-weight: 400; font-size: clamp(14px, 1.41vw, 18px); }
-.project-notes p, .project-menu button { font-size: clamp(16px, 1.56vw, 20px); line-height: 1.2; }
+.project-notes p { font-size: clamp(16px, 1.56vw, 20px); line-height: 1.2; }
 .project-notes p { max-inline-size: 38ch; white-space: pre-line; }
 .project[data-project="sitik"] #project-section-2 .project-notes h3 { font-size: calc(clamp(14px, 1.41vw, 18px) - 2px); }
 .project[data-project="sitik"] #project-section-2 .project-notes p { font-size: calc(clamp(16px, 1.56vw, 20px) - 2px); }
@@ -320,10 +325,42 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .art img.art-crop { inset: auto; object-fit: fill; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
-.project-menu button { display: flex; align-items: center; gap: 13px; min-height: 28px; padding: 0; border: 0; background: none; color: #a5a1a1; text-align: left; cursor: pointer; }
-.project-menu button[aria-current] { color: #2f2f2f; }
-.project-menu button span { visibility: hidden; }
-.project-menu button:is([aria-current], :hover, :focus-visible) span { visibility: visible; }
+.project-menu button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 32px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #a5a5a5;
+  font: inherit;
+  font-size: clamp(14px, 1.25vw, 18px);
+  line-height: 1.2;
+  text-align: left;
+  cursor: pointer;
+}
+.project-menu button::before {
+  content: "";
+  flex: 0 0 20px;
+  height: 1px;
+  background: #ddd;
+}
+.project-menu button:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: calc(50% + 10px);
+  left: 0;
+  width: 12px;
+  height: 1px;
+  background: #ddd;
+  box-shadow: 0 10px #ddd;
+  pointer-events: none;
+}
+.project-menu button:is(:hover, :focus-visible) { color: #555; }
+.project-menu button[aria-current] { color: #111; }
+.project-menu button[aria-current]::before { flex-basis: 32px; background: currentColor; }
 
 @media (prefers-reduced-motion: reduce) {
   .dock .pill, .case-card img { transition: none; }

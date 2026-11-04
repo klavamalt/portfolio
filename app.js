@@ -115,9 +115,11 @@ function projectSection(section, title) {
 function renderProject(project) {
   const title = element('h1', 'visually-hidden', project.title);
   title.tabIndex = -1;
-  const back = element('a', 'project-back', '←');
+  const back = element('a', 'project-back');
   back.href = '#cases';
-  back.setAttribute('aria-label', 'На главную');
+  const backIcon = element('span', 'project-back-icon', '↩');
+  backIcon.setAttribute('aria-hidden', 'true');
+  back.append(backIcon, 'Назад');
   const hero = image(project.hero, 'Обложка проекта «' + project.title.split(' | ')[0] + '»', 'project-hero');
   const body = element('div', 'project-content');
   const menu = element('nav', 'project-menu');
@@ -132,7 +134,7 @@ function renderProject(project) {
     block.id = 'project-section-' + (index + 1);
     button.setAttribute('aria-label', labels[index]);
     button.setAttribute('aria-controls', block.id);
-    button.append(image('rule.svg', ''), element('span', null, labels[index]));
+    button.textContent = labels[index];
     button.addEventListener('click', () => {
       block.scrollIntoView({ behavior: reducedMotion.matches ? 'instant' : 'smooth' });
       block.querySelector('h2').focus({ preventScroll: true });
@@ -160,7 +162,6 @@ function updateProjectMenu() {
     if (active === button.hasAttribute('aria-current')) return;
     if (active) button.setAttribute('aria-current', 'location');
     else button.removeAttribute('aria-current');
-    button.querySelector('img').src = 'assets/' + (active ? 'rule-active.svg' : 'rule.svg');
   });
 }
 
@@ -237,8 +238,6 @@ async function preloadPortfolio() {
     ...Array.from(document.querySelectorAll('main img'), img => img.src),
     ...visibleProjects.flatMap(project => [project.cover, project.hero]).map(file => 'assets/' + file),
     ...artwork.filter(art => art.file).map(art => 'assets/' + art.file),
-    'assets/rule.svg',
-    'assets/rule-active.svg',
   ].map(src => new URL(src, document.baseURI).href));
   const videos = new Set(artwork.filter(art => art.video).map(art => art.video));
 
