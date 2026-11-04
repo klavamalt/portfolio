@@ -246,7 +246,7 @@ const projects = [
   {
     "id": "context",
     "title": "Контекст | Спецпроект",
-    "description": "Создала социально-значимый спецпроект о ярлыках и избитых клише",
+    "description": "Создала спецпроект о ярлыках и стереотипах",
     "icon": "💻",
     "color": "#fcff00",
     "cover": "context-cover.webp",

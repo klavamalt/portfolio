@@ -30,10 +30,7 @@ function caseCard(project, index) {
   if (project.id === 'context') card.style.setProperty('--card-text', '#4f4f4f');
 
   const copy = element('div', 'case-card-copy');
-  const title = element('h2');
-  const icon = element('span', null, project.icon);
-  icon.setAttribute('aria-hidden', 'true');
-  title.append(icon, document.createTextNode(project.title));
+  const title = element('h2', null, project.title);
   copy.append(title, element('p', null, project.description));
   const cover = image(project.cover, '');
   cover.decoding = 'async';
