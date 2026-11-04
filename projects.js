@@ -112,7 +112,7 @@ const projects = [
             ]
           },
           {
-            "file": "art-175-50879.png",
+            "file": "iskra-interior.jpg",
             "alt": "Оформление интерьера"
           },
           {

@@ -58,14 +58,16 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 }
 
 .identity {
+  --avatar-size: calc(215 * .95 * var(--unit));
   display: grid;
   grid-template-columns: calc(215 * var(--unit)) minmax(0, 1fr);
   grid-template-rows: 1fr auto;
   min-height: calc(217 * var(--unit));
+  padding-bottom: calc(217 * var(--unit) - var(--avatar-size));
   gap: 0 calc(18 * var(--unit));
 }
 
-.avatar-slot { grid-row: span 2; align-self: start; width: 95%; aspect-ratio: 1; }
+.avatar-slot { grid-row: span 2; align-self: start; width: var(--avatar-size); aspect-ratio: 1; }
 
 .avatar {
   position: relative;
@@ -130,6 +132,10 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
   font-weight: 500;
   white-space: nowrap;
   cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+  .profiles { --profile-button-unit: calc(var(--unit) * .98 * .98); }
 }
 
 .profiles .pill { --unit: var(--profile-button-unit); padding-inline: 0; font-size: calc(24 * var(--unit)); }
@@ -257,6 +263,8 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .project-notes h3 { margin-bottom: 6px; color: #626262; font-weight: 400; font-size: clamp(14px, 1.41vw, 18px); }
 .project-notes p, .project-menu button { font-size: clamp(16px, 1.56vw, 20px); line-height: 1.2; }
 .project-notes p { white-space: pre-line; }
+.project[data-project="sitik"] #project-section-2 .project-notes h3 { font-size: calc(clamp(14px, 1.41vw, 18px) - 2px); }
+.project[data-project="sitik"] #project-section-2 .project-notes p { font-size: calc(clamp(16px, 1.56vw, 20px) - 2px); }
 .gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(12px, 1.56vw, 20px); }
 .art { position: relative; overflow: hidden; aspect-ratio: 497 / 405; border-radius: clamp(18px, 2.34vw, 30px); }
 .art-wide { grid-column: 1 / -1; aspect-ratio: 1014 / var(--art-height, 405); }
