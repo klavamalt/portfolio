@@ -199,6 +199,10 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .case-card h2 span { display: grid; place-items: center; flex: 0 0 calc(46 * var(--unit)); aspect-ratio: 1; border-radius: 5px; background: #fff; font-size: calc(28 * var(--unit)); }
 .case-card p { margin-top: calc(9 * var(--unit)); min-height: 2.4em; font-size: calc(20 * var(--unit)); line-height: 1.2; opacity: .9; }
 
+@media (min-width: 1024px) {
+  .case-card p { font-size: calc(19 * var(--unit)); }
+}
+
 .about {
   display: grid;
   grid-template-columns: minmax(0, 675fr) minmax(0, 650fr);
