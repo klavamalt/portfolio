@@ -450,7 +450,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .case-card { flex: 0 0 min(86vw, 440px); border-radius: 26px; }
   .case-card-copy { inset: auto 24px 24px; }
   .case-card h2 { font-size: 20px; line-height: 1.25; }
-  .case-card p { margin-top: 10px; max-inline-size: 100%; font-size: 17px; line-height: 1.35; }
+  .case-card p { margin-top: 10px; max-inline-size: 100%; font-size: 16px; line-height: 1.35; }
   .dock { width: calc(212px + 2 * var(--mobile-nav-side-padding)); max-width: calc(100% - 32px); height: var(--mobile-nav-height); align-items: center; gap: 8px; padding: var(--mobile-nav-padding) var(--mobile-nav-side-padding); background: var(--mobile-nav-surface); box-shadow: var(--mobile-nav-shadow); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
   .dock .pill { height: var(--mobile-nav-button-height); min-height: var(--mobile-nav-button-height); padding: 8px 6px; font-size: 17px; line-height: 20px; }
   .dock .pill:nth-child(n) { min-width: 0; }
