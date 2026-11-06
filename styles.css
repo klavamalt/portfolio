@@ -378,6 +378,9 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
     --dock-unit: 1px;
     --pill-font-size: 16px;
     --dock-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    --mobile-nav-padding: 22px;
+    --mobile-nav-button-height: 38px;
+    --mobile-nav-height: calc(var(--mobile-nav-button-height) + 2 * var(--mobile-nav-padding));
   }
 
   body.is-home { overflow: auto; overscroll-behavior: auto; }
@@ -423,8 +426,8 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .identity-title p { margin-top: 8px; line-height: 1.4; }
   .profiles { flex-wrap: wrap; gap: 8px; }
   .profiles .pill:nth-child(n) { width: auto; min-height: 36px; padding: 8px 20px; font-size: 16px; line-height: 20px; }
-  .profile-copy { max-width: 620px; margin-top: 32px; gap: 24px; }
-  .profile-copy h2 { margin-bottom: 8px; font-size: 14px; }
+  .profile-copy { max-width: 620px; margin-top: 32px; gap: 34px; }
+  .profile-copy h2 { margin-bottom: 8px; font-size: 16px; }
   .profile-copy p { font-size: 18px; line-height: 1.45; }
   .profile-copy br { display: none; }
 
@@ -441,11 +444,11 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .case-card-copy { inset: auto 24px 24px; }
   .case-card h2 { font-size: 20px; line-height: 1.25; }
   .case-card p { margin-top: 10px; max-inline-size: 100%; font-size: 17px; line-height: 1.35; }
-  .dock { max-width: calc(100% - 32px); gap: 8px; padding: 12px; }
-  .dock .pill { min-height: 38px; padding: 8px 24px; font-size: 17px; line-height: 20px; }
+  .dock { max-width: calc(100% - 32px); height: var(--mobile-nav-height); gap: 8px; padding: var(--mobile-nav-padding); }
+  .dock .pill { height: var(--mobile-nav-button-height); min-height: var(--mobile-nav-button-height); padding: 8px 24px; font-size: 17px; line-height: 20px; }
   .dock .pill:nth-child(n) { min-width: 0; }
   body:has(#project:not([hidden])) .dock .pill { padding-inline: clamp(10px, 3vw, 18px); }
-  .contact-status { bottom: calc(var(--dock-bottom) + 84px); font-size: 15px; }
+  .contact-status { bottom: calc(var(--dock-bottom) + var(--mobile-nav-height) + 16px); font-size: 15px; }
 
   .about { grid-template-columns: 1fr; gap: 28px; padding: 32px var(--edge) calc(116px + env(safe-area-inset-bottom, 0px)); }
   .about-photo { max-width: 620px; border-radius: 24px; }
@@ -468,21 +471,21 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .project-menu button { justify-content: center; flex: 1; min-height: 44px; padding: 10px 12px; border-radius: 999px; font-size: 17px; }
   .project-menu button::before, .project-menu button::after { display: none; }
   .project-menu button[aria-current] { background: #f0f0f0; }
-  .project-sections { --section-gap: 32px; }
+  .project-sections { --section-gap: 42px; }
   .project-section { scroll-margin-top: calc(92px + env(safe-area-inset-top, 0px)); }
-  .project-notes { gap: 24px; }
+  .project-notes { gap: 34px; }
   .project-notes h3 { font-size: 14px; margin-bottom: 8px; }
   .project-notes p { max-inline-size: none; font-size: 17px; line-height: 1.45; }
   .gallery { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .art { border-radius: 18px; }
-  .art:not(.palette) { aspect-ratio: 497 / 405; }
+  .art { aspect-ratio: 497 / 405; }
   .art img.art-crop { object-fit: cover; }
   .project-back {
-    bottom: calc(var(--dock-bottom) + 12px);
+    bottom: var(--dock-bottom);
     left: 16px;
     width: 92px;
-    height: 38px;
-    min-height: 38px;
+    height: var(--mobile-nav-height);
+    min-height: var(--mobile-nav-height);
     gap: 6px;
     padding-inline: 10px;
     font-size: 17px;
@@ -514,7 +517,8 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
 }
 
 @media (max-width: 480px) {
-  .project-back { width: 38px; padding: 0; }
+  body:has(#project:not([hidden])) .dock { max-width: calc(100% - 104px); }
+  .project-back { left: 8px; width: 38px; padding: 0; }
   .project-back-icon { font-size: 22px; }
   .project-back-label { display: none; }
 }
