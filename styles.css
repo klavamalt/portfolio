@@ -435,7 +435,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .profiles [data-contact="dprofile"] { display: none; }
   .profile-copy { max-width: 620px; margin-top: 42px; gap: 34px; }
   .profile-copy h2 { margin-bottom: 8px; font-size: 16px; }
-  .profile-copy p { font-size: 18px; line-height: 1.45; }
+  .profile-copy p { font-size: 17px; line-height: 1.45; }
   .profile-copy br { display: none; }
 
   .work { padding: 40px 0 0; scroll-margin-top: 24px; }
