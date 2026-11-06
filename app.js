@@ -151,7 +151,8 @@ function updateProjectMenu() {
   const sections = [...projectPage.querySelectorAll('.project-section')];
   const buttons = projectPage.querySelectorAll('.project-menu button');
   const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
-  const passed = sections.findLastIndex(section => section.getBoundingClientRect().top <= 48);
+  const sectionOffset = parseFloat(getComputedStyle(sections[0]).scrollMarginTop) + 1;
+  const passed = sections.findLastIndex(section => section.getBoundingClientRect().top <= Math.max(48, sectionOffset));
   const current = atBottom ? sections.length - 1 : Math.max(0, passed);
 
   buttons.forEach((button, index) => {
@@ -166,40 +167,92 @@ window.addEventListener('scroll', updateProjectMenu, { passive: true });
 window.addEventListener('resize', updateProjectMenu);
 
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const mobileLayout = matchMedia('(max-width: 1023px)');
 let carouselFrame = 0;
 let lastFrameTime;
-let travel = 0;
-let direction = 1;
+let carouselPosition = 0;
+let appliedPosition = 0;
+let carouselPausedUntil = 0;
+let carouselTouching = false;
+const hoverPointer = matchMedia('(hover: hover)');
+
+function carouselLength() {
+  const first = track.querySelector('.case-card');
+  const copy = track.querySelector('[data-loop-copy]');
+  return first && copy ? copy.getBoundingClientRect().left - first.getBoundingClientRect().left : 0;
+}
+
+function setCarouselPosition(position) {
+  const length = carouselLength();
+  carouselPosition = length ? ((position % length) + length) % length : position;
+  track.scrollLeft = carouselPosition;
+  appliedPosition = track.scrollLeft;
+}
 
 function advanceCarousel(time) {
   const elapsed = Math.min(time - (lastFrameTime ?? time), 40);
   lastFrameTime = time;
   carouselFrame = requestAnimationFrame(advanceCarousel);
 
-  if (track.matches(':hover, :focus-visible, :has(:focus-visible)')) return;
-  const end = track.scrollWidth - track.clientWidth;
-  if (end <= 0) return;
-  if (track.scrollLeft <= 0) direction = 1;
-  else if (track.scrollLeft >= end - 1) direction = -1;
-
-  travel += elapsed * 0.04;
-  const step = Math.floor(travel);
-  if (step) {
-    track.scrollLeft += direction * step;
-    travel -= step;
+  if (track.scrollLeft !== appliedPosition) {
+    carouselPosition = track.scrollLeft;
+    appliedPosition = track.scrollLeft;
+    carouselPausedUntil = time + 1800;
   }
+  if (document.hidden || carouselTouching || time < carouselPausedUntil ||
+      (hoverPointer.matches && track.matches(':hover')) ||
+      track.matches(':focus-visible, :has(:focus-visible)')) return;
+
+  // Retain fractional pixels between frames for a steady 28 px/s at any refresh rate.
+  setCarouselPosition(carouselPosition + elapsed * 0.028);
 }
 
 function syncCarousel() {
   cancelAnimationFrame(carouselFrame);
+  carouselFrame = 0;
   lastFrameTime = undefined;
-  travel = 0;
+  const copies = track.querySelectorAll('[data-loop-copy]');
+  if (reducedMotion.matches) {
+    copies.forEach(copy => copy.remove());
+  } else if (!copies.length) {
+    for (const card of [...track.children]) {
+      const copy = card.cloneNode(true);
+      copy.dataset.loopCopy = '';
+      copy.setAttribute('aria-hidden', 'true');
+      copy.tabIndex = -1;
+      track.append(copy);
+    }
+  }
+  carouselPosition = appliedPosition = track.scrollLeft;
   if (!home.hidden && !reducedMotion.matches && !document.body.classList.contains('is-loading')) {
     carouselFrame = requestAnimationFrame(advanceCarousel);
   }
 }
 
 reducedMotion.addEventListener('change', syncCarousel);
+function syncLayout() {
+  syncCarousel();
+  track.setAttribute('aria-label', mobileLayout.matches ? 'Кейсы. Листайте свайпом.' : 'Кейсы. Используйте стрелки для прокрутки.');
+  track.tabIndex = 0;
+}
+mobileLayout.addEventListener('change', syncLayout);
+syncLayout();
+
+track.addEventListener('pointerdown', () => { carouselTouching = true; });
+function releaseCarousel() {
+  carouselTouching = false;
+  carouselPausedUntil = performance.now() + 1800;
+}
+window.addEventListener('pointerup', releaseCarousel);
+window.addEventListener('pointercancel', releaseCarousel);
+track.addEventListener('keydown', event => {
+  if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+  event.preventDefault();
+  const card = track.querySelector('.case-card');
+  const distance = card.getBoundingClientRect().width + parseFloat(getComputedStyle(track).gap);
+  setCarouselPosition(track.scrollLeft + (event.key === 'ArrowRight' ? distance : -distance));
+  carouselPausedUntil = performance.now() + 1800;
+});
 
 function renderRoute(moveFocus = false) {
   const route = location.hash.slice(1);
@@ -220,17 +273,30 @@ function renderRoute(moveFocus = false) {
 
   if (project) renderProject(project);
   document.title = project ? project.title + ' — Эмилия Коростелева' : homeTitle;
-  window.scrollTo(0, 0);
+  if (mobileLayout.matches && !home.hidden && route === 'cases') {
+    document.querySelector('#cases').scrollIntoView();
+  } else {
+    window.scrollTo(0, 0);
+  }
   updateProjectMenu();
 
   if (moveFocus) {
     if (project) projectPage.querySelector('h1').focus({ preventScroll: true });
     else if (showContacts) about.focus({ preventScroll: true });
+    else if (mobileLayout.matches && route === 'cases') track.focus({ preventScroll: true });
     else home.querySelector('h1').focus({ preventScroll: true });
   }
 }
 
 async function preloadPortfolio() {
+  if (mobileLayout.matches) {
+    // Case galleries load on demand so phones do not download the entire portfolio.
+    await Promise.allSettled([
+      ...Array.from(document.querySelectorAll('main img:not([loading="lazy"])'), img => img.decode()),
+      document.fonts.load('400 16px "Portfolio Suisse"'),
+    ]);
+    return;
+  }
   const artwork = visibleProjects.flatMap(project => project.sections.flatMap(section => section.gallery));
   const imageSources = new Set([
     ...Array.from(document.querySelectorAll('main img'), img => img.src),
@@ -306,14 +372,15 @@ avatarSlot.addEventListener('pointermove', event => {
 });
 
 window.addEventListener('wheel', event => {
-  if (home.hidden || document.body.classList.contains('is-loading') || event.ctrlKey || !event.cancelable) return;
+  if (mobileLayout.matches || home.hidden || document.body.classList.contains('is-loading') || event.ctrlKey || !event.cancelable) return;
   const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? track.clientWidth : 1;
   const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
   const distance = delta * unit;
   if (distance < 0 && track.scrollLeft <= 0) return;
   if (distance > 0 && track.scrollLeft >= track.scrollWidth - track.clientWidth - 1) return;
   event.preventDefault();
-  track.scrollLeft += distance;
+  setCarouselPosition(track.scrollLeft + distance);
+  carouselPausedUntil = performance.now() + 1800;
 }, { passive: false });
 
 for (const button of document.querySelectorAll('[data-contact]')) {
