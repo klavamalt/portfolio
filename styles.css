@@ -456,11 +456,6 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .dock .pill:nth-child(n) { min-width: 0; }
   .dock .pill[href="#cases"] { flex: 0 0 80px; }
   .dock .pill.pink { flex: 0 0 124px; height: var(--mobile-nav-action-height); padding-inline: 20px; }
-  body:has(#project:not([hidden])) .dock {
-    left: auto;
-    right: max(var(--edge), env(safe-area-inset-right, 0px));
-    translate: none;
-  }
   body:has(#project:not([hidden])) .dock .pill[href="#cases"],
   body:has(#project:not([hidden])) .dock .pill[href="#cases"]:is(:hover, :focus-visible, :active) { background-color: transparent; color: #333; }
   .contact-status { bottom: calc(var(--dock-bottom) + var(--mobile-nav-height) + 16px); font-size: 15px; }
@@ -510,23 +505,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .art img.art-crop { object-fit: cover; }
   .art[data-file="sitik-2-1.webp"] { display: none; }
   .art[data-file="sitik-1-3.webp"] img { object-position: left center; }
-  .project-back {
-    bottom: var(--dock-bottom);
-    left: max(var(--edge), env(safe-area-inset-left, 0px));
-    width: var(--mobile-nav-height);
-    height: var(--mobile-nav-height);
-    min-height: var(--mobile-nav-height);
-    gap: 6px;
-    padding: 0;
-    font-size: 17px;
-    line-height: 20px;
-    background: var(--mobile-nav-surface);
-    box-shadow: var(--mobile-nav-shadow);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-  }
-  .project-back-icon { font-size: 22px; }
-  .project-back-label { display: none; }
+  .project-back { display: none; }
   .palette { font-size: clamp(11px, 2.3vw, 20px); }
   .palette div { padding-left: 10%; }
 }
@@ -553,10 +532,4 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   :root { --mobile-nav-side-padding: 6px; }
   .identity { --avatar-size: 126.72px; grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .identity h1 { font-size: 18px; }
-}
-
-@media (max-width: 339px) {
-  .project-back {
-    bottom: calc(var(--dock-bottom) + var(--mobile-nav-height) + 12px);
-  }
 }
