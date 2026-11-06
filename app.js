@@ -1,3 +1,9 @@
+history.scrollRestoration = 'manual';
+if (location.hash === '#cases') {
+  history.replaceState(history.state, '', location.pathname + location.search);
+}
+window.scrollTo(0, 0);
+
 const home = document.querySelector('#home');
 const about = document.querySelector('#contacts');
 const projectPage = document.querySelector('#project');
