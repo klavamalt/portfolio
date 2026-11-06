@@ -378,7 +378,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
     --dock-unit: 1px;
     --pill-font-size: 16px;
     --dock-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-    --mobile-nav-padding: 22px;
+    --mobile-nav-padding: 12px;
     --mobile-nav-side-padding: 16px;
     --mobile-nav-button-height: 38px;
     --mobile-nav-action-height: 42px;
@@ -428,6 +428,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .identity-title p { margin-top: 8px; line-height: 1.4; }
   .profiles { flex-wrap: wrap; gap: 8px; }
   .profiles .pill:nth-child(n) { width: auto; min-height: 36px; padding: 8px 20px; font-size: 16px; line-height: 20px; }
+  .profiles [data-contact="dprofile"] { display: none; }
   .profile-copy { max-width: 620px; margin-top: 32px; gap: 34px; }
   .profile-copy h2 { margin-bottom: 8px; font-size: 16px; }
   .profile-copy p { font-size: 18px; line-height: 1.45; }
@@ -449,7 +450,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .dock { max-width: calc(100% - 32px); height: var(--mobile-nav-height); align-items: center; gap: 8px; padding: var(--mobile-nav-padding) var(--mobile-nav-side-padding); }
   .dock .pill { height: var(--mobile-nav-button-height); min-height: var(--mobile-nav-button-height); padding: 8px 6px; font-size: 17px; line-height: 20px; }
   .dock .pill:nth-child(n) { min-width: 0; }
-  .dock .pill[href="#cases"] { flex: 0 0 60px; }
+  .dock .pill[href="#cases"] { flex: 0 0 80px; }
   .dock .pill.pink { flex: 0 0 124px; height: var(--mobile-nav-action-height); padding-inline: 20px; }
   body:has(#project:not([hidden])) .dock .pill[href="#cases"] { background-color: #fff; color: #333; }
   .contact-status { bottom: calc(var(--dock-bottom) + var(--mobile-nav-height) + 16px); font-size: 15px; }
@@ -461,6 +462,14 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .about-copy p { font-size: 18px; line-height: 1.45; }
 
   .project { padding-bottom: calc(116px + env(safe-area-inset-bottom, 0px)); }
+  .project-hero {
+    --mobile-hero-base-height: min(49.140625cqw, 68svh, max(220px, 100svh - 260px));
+    height: calc(var(--mobile-hero-base-height) + 40px);
+    max-height: none;
+  }
+  .project[data-project="drophunter"] .project-hero {
+    --hero-height: calc(min(56.25cqw, 68svh, max(220px, 100svh - 260px)) + 40px);
+  }
   .project-content { display: block; padding: 0 var(--edge); }
   .project-menu {
     z-index: 3;
@@ -515,12 +524,13 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .case-card { flex-basis: 90vw; aspect-ratio: 471.31 / 650; }
   .case-card-copy { inset: auto 22px 24px; }
   .case-card p { min-height: 0; }
-  .project-hero { max-height: none; }
+  .project-hero { --mobile-hero-base-height: 49.140625cqw; }
   .palette { font-size: clamp(10px, 2.7vw, 16px); }
   .palette div { padding-left: 8%; }
 }
 
 @media (max-width: 360px) {
+  :root { --mobile-nav-side-padding: 6px; }
   .identity { --avatar-size: 96px; gap: 24px 12px; }
   .identity h1 { font-size: 18px; }
 }
