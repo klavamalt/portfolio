@@ -382,6 +382,20 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
 
   body.is-home { overflow: auto; overscroll-behavior: auto; }
   body.is-home.is-loading { overflow: hidden; }
+  .site-loader {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
+  .site-loader video {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
   .home {
     --unit: 1px;
     display: block;
@@ -414,8 +428,8 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .profile-copy p { font-size: 18px; line-height: 1.45; }
   .profile-copy br { display: none; }
 
-  .work { padding: 28px 0 0; scroll-margin-top: 24px; }
-  .work-heading { display: block; margin: 0 var(--edge) 20px; font-size: 25px; font-weight: 400; }
+  .work { padding: 40px 0 0; scroll-margin-top: 24px; }
+  .work-heading { display: block; margin: 0 var(--edge) 36px; font-size: 25px; font-weight: 400; }
   .case-track {
     display: flex;
     gap: 16px;
@@ -423,22 +437,14 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
     overflow-x: auto;
     mask-image: none;
   }
-  .case-card { flex: 0 0 min(76vw, 380px); border-radius: 26px; }
+  .case-card { flex: 0 0 min(86vw, 440px); border-radius: 26px; }
   .case-card-copy { inset: auto 24px 24px; }
   .case-card h2 { font-size: 20px; line-height: 1.25; }
   .case-card p { margin-top: 10px; max-inline-size: 100%; font-size: 17px; line-height: 1.35; }
-  .dock { max-width: calc(100% - 32px); gap: 8px; padding: 8px; }
+  .dock { max-width: calc(100% - 32px); gap: 8px; padding: 12px; }
   .dock .pill { min-height: 38px; padding: 8px 24px; font-size: 17px; line-height: 20px; }
   .dock .pill:nth-child(n) { min-width: 0; }
-  body:has(#project:not([hidden])) .dock {
-    left: auto;
-    right: 16px;
-    translate: none;
-    max-width: calc(100% - 132px);
-    gap: 4px;
-    padding: 6px;
-  }
-  body:has(#project:not([hidden])) .dock .pill { padding-inline: 10px; }
+  body:has(#project:not([hidden])) .dock .pill { padding-inline: clamp(10px, 3vw, 18px); }
   .contact-status { bottom: calc(var(--dock-bottom) + 84px); font-size: 15px; }
 
   .about { grid-template-columns: 1fr; gap: 28px; padding: 32px var(--edge) calc(116px + env(safe-area-inset-bottom, 0px)); }
@@ -467,10 +473,12 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .project-notes { gap: 24px; }
   .project-notes h3 { font-size: 14px; margin-bottom: 8px; }
   .project-notes p { max-inline-size: none; font-size: 17px; line-height: 1.45; }
-  .gallery { gap: 16px; }
+  .gallery { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .art { border-radius: 18px; }
+  .art:not(.palette) { aspect-ratio: 497 / 405; }
+  .art img.art-crop { object-fit: cover; }
   .project-back {
-    bottom: calc(var(--dock-bottom) + 6px);
+    bottom: calc(var(--dock-bottom) + 12px);
     left: 16px;
     width: 92px;
     height: 38px;
@@ -482,6 +490,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
     box-shadow: 0 2px 12px #0001;
   }
   .project-back-icon { font-size: 18px; }
+  .project-back-label { white-space: nowrap; }
   .palette { font-size: clamp(11px, 2.3vw, 20px); }
   .palette div { padding-left: 10%; }
 }
@@ -496,12 +505,18 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .profiles { grid-column: 1 / -1; }
   .profiles .pill:nth-child(n) { flex: 1; padding-inline: 12px; }
   .project-notes, .gallery { grid-template-columns: minmax(0, 1fr); }
-  .case-card { flex-basis: 82vw; aspect-ratio: 471.31 / 610; }
+  .case-card { flex-basis: 90vw; aspect-ratio: 471.31 / 650; }
   .case-card-copy { inset: auto 22px 24px; }
   .case-card p { min-height: 0; }
   .project-hero { max-height: none; }
   .palette { font-size: clamp(10px, 2.7vw, 16px); }
   .palette div { padding-left: 8%; }
+}
+
+@media (max-width: 480px) {
+  .project-back { width: 38px; padding: 0; }
+  .project-back-icon { font-size: 22px; }
+  .project-back-label { display: none; }
 }
 
 @media (max-width: 360px) {

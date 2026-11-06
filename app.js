@@ -114,9 +114,10 @@ function renderProject(project) {
   title.tabIndex = -1;
   const back = element('a', 'project-back');
   back.href = '#cases';
-  const backIcon = element('span', 'project-back-icon', '↩');
+  const backIcon = element('span', 'project-back-icon', '↩\uFE0E');
   backIcon.setAttribute('aria-hidden', 'true');
-  back.append(backIcon, 'Назад');
+  back.setAttribute('aria-label', 'Назад к кейсам');
+  back.append(backIcon, element('span', 'project-back-label', 'Назад'));
   const hero = image(project.hero, 'Обложка проекта «' + project.title.split(' | ')[0] + '»', 'project-hero');
   const body = element('div', 'project-content');
   const menu = element('nav', 'project-menu');
