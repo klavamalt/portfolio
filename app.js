@@ -55,6 +55,7 @@ const palettes = {
 
 function artwork(art) {
   const figure = element('figure', 'art');
+  if (art.file) figure.dataset.file = art.file;
   if (art.palette) {
     figure.classList.add('art-wide', 'palette', 'palette-' + art.palette);
     for (const [background, color, label] of palettes[art.palette]) {
