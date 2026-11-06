@@ -175,6 +175,7 @@ const mobileLayout = matchMedia('(max-width: 1023px)');
 let carouselFrame = 0;
 let lastFrameTime;
 let carouselPosition = 0;
+let carouselDirection = 1;
 let appliedPosition = 0;
 let carouselPausedUntil = 0;
 let carouselTouching = false;
@@ -201,12 +202,13 @@ function advanceCarousel(time) {
       (hoverPointer.matches && track.matches(':hover')) ||
       track.matches(':focus-visible, :has(:focus-visible)')) return;
 
+  const end = Math.max(0, track.scrollWidth - track.clientWidth);
+  if (end === 0) return;
+  if (carouselPosition >= end) carouselDirection = -1;
+  else if (carouselPosition <= 0) carouselDirection = 1;
+
   // Retain fractional pixels between frames for a steady 28 px/s at any refresh rate.
-  setCarouselPosition(carouselPosition + elapsed * 0.028);
-  if (carouselPosition >= track.scrollWidth - track.clientWidth) {
-    cancelAnimationFrame(carouselFrame);
-    carouselFrame = 0;
-  }
+  setCarouselPosition(carouselPosition + carouselDirection * elapsed * 0.028);
 }
 
 function syncCarousel() {
