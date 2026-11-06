@@ -4,7 +4,9 @@ const projectPage = document.querySelector('#project');
 const track = document.querySelector('.case-track');
 const status = document.querySelector('.contact-status');
 const homeTitle = document.title;
-const visibleProjects = projects.filter(project => !project.hidden);
+const projectOrder = { sitik: 0, context: 1 };
+const visibleProjects = projects.filter(project => !project.hidden)
+  .sort((a, b) => (projectOrder[a.id] ?? 2) - (projectOrder[b.id] ?? 2));
 const loader = document.querySelector('.site-loader');
 const preloadedVideos = new Map();
 
@@ -177,15 +179,9 @@ let carouselPausedUntil = 0;
 let carouselTouching = false;
 const hoverPointer = matchMedia('(hover: hover)');
 
-function carouselLength() {
-  const first = track.querySelector('.case-card');
-  const copy = track.querySelector('[data-loop-copy]');
-  return first && copy ? copy.getBoundingClientRect().left - first.getBoundingClientRect().left : 0;
-}
-
 function setCarouselPosition(position) {
-  const length = carouselLength();
-  carouselPosition = length ? ((position % length) + length) % length : position;
+  const end = Math.max(0, track.scrollWidth - track.clientWidth);
+  carouselPosition = Math.max(0, Math.min(position, end));
   track.scrollLeft = carouselPosition;
   appliedPosition = track.scrollLeft;
 }
@@ -206,24 +202,16 @@ function advanceCarousel(time) {
 
   // Retain fractional pixels between frames for a steady 28 px/s at any refresh rate.
   setCarouselPosition(carouselPosition + elapsed * 0.028);
+  if (carouselPosition >= track.scrollWidth - track.clientWidth) {
+    cancelAnimationFrame(carouselFrame);
+    carouselFrame = 0;
+  }
 }
 
 function syncCarousel() {
   cancelAnimationFrame(carouselFrame);
   carouselFrame = 0;
   lastFrameTime = undefined;
-  const copies = track.querySelectorAll('[data-loop-copy]');
-  if (reducedMotion.matches) {
-    copies.forEach(copy => copy.remove());
-  } else if (!copies.length) {
-    for (const card of [...track.children]) {
-      const copy = card.cloneNode(true);
-      copy.dataset.loopCopy = '';
-      copy.setAttribute('aria-hidden', 'true');
-      copy.tabIndex = -1;
-      track.append(copy);
-    }
-  }
   carouselPosition = appliedPosition = track.scrollLeft;
   if (!home.hidden && !reducedMotion.matches && !document.body.classList.contains('is-loading')) {
     carouselFrame = requestAnimationFrame(advanceCarousel);

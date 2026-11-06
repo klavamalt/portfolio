@@ -427,7 +427,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .identity h1 { max-width: 360px; font-size: 27px; line-height: 1.2; }
   .identity-title p { margin-top: 8px; line-height: 1.4; }
   .profiles { flex-wrap: wrap; gap: 8px; }
-  .profiles .pill:nth-child(n) { width: auto; min-height: 36px; padding: 8px 20px; font-size: 16px; line-height: 20px; }
+  .profiles .pill:nth-child(n) { width: auto; min-height: 46px; padding: 13px 20px; font-size: 16px; line-height: 20px; }
   .profiles [data-contact="dprofile"] { display: none; }
   .profile-copy { max-width: 620px; margin-top: 32px; gap: 34px; }
   .profile-copy h2 { margin-bottom: 8px; font-size: 16px; }
@@ -447,7 +447,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .case-card-copy { inset: auto 24px 24px; }
   .case-card h2 { font-size: 20px; line-height: 1.25; }
   .case-card p { margin-top: 10px; max-inline-size: 100%; font-size: 17px; line-height: 1.35; }
-  .dock { max-width: calc(100% - 32px); height: var(--mobile-nav-height); align-items: center; gap: 8px; padding: var(--mobile-nav-padding) var(--mobile-nav-side-padding); }
+  .dock { width: calc(212px + 2 * var(--mobile-nav-side-padding)); max-width: calc(100% - 32px); height: var(--mobile-nav-height); align-items: center; gap: 8px; padding: var(--mobile-nav-padding) var(--mobile-nav-side-padding); }
   .dock .pill { height: var(--mobile-nav-button-height); min-height: var(--mobile-nav-button-height); padding: 8px 6px; font-size: 17px; line-height: 20px; }
   .dock .pill:nth-child(n) { min-width: 0; }
   .dock .pill[href="#cases"] { flex: 0 0 80px; }
@@ -470,6 +470,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .project[data-project="drophunter"] .project-hero {
     --hero-height: calc(min(56.25cqw, 68svh, max(220px, 100svh - 260px)) + 40px);
   }
+  .project[data-project] .project-hero { object-fit: fill; }
   .project-content { display: block; padding: 0 var(--edge); }
   .project-menu {
     z-index: 3;
