@@ -379,8 +379,10 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
     --pill-font-size: 16px;
     --dock-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
     --mobile-nav-padding: 22px;
+    --mobile-nav-side-padding: 16px;
     --mobile-nav-button-height: 38px;
-    --mobile-nav-height: calc(var(--mobile-nav-button-height) + 2 * var(--mobile-nav-padding));
+    --mobile-nav-action-height: 42px;
+    --mobile-nav-height: calc(var(--mobile-nav-action-height) + 2 * var(--mobile-nav-padding));
   }
 
   body.is-home { overflow: auto; overscroll-behavior: auto; }
@@ -408,7 +410,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   }
   .profile {
     --profile-text-size: 16px;
-    padding: calc(44px + env(safe-area-inset-top, 0px)) var(--edge) 44px;
+    padding: calc(44px + env(safe-area-inset-top, 0px)) var(--edge) 64px;
   }
   .identity {
     --avatar-size: 144px;
@@ -444,10 +446,12 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .case-card-copy { inset: auto 24px 24px; }
   .case-card h2 { font-size: 20px; line-height: 1.25; }
   .case-card p { margin-top: 10px; max-inline-size: 100%; font-size: 17px; line-height: 1.35; }
-  .dock { max-width: calc(100% - 32px); height: var(--mobile-nav-height); gap: 8px; padding: var(--mobile-nav-padding); }
-  .dock .pill { height: var(--mobile-nav-button-height); min-height: var(--mobile-nav-button-height); padding: 8px 24px; font-size: 17px; line-height: 20px; }
+  .dock { max-width: calc(100% - 32px); height: var(--mobile-nav-height); align-items: center; gap: 8px; padding: var(--mobile-nav-padding) var(--mobile-nav-side-padding); }
+  .dock .pill { height: var(--mobile-nav-button-height); min-height: var(--mobile-nav-button-height); padding: 8px 6px; font-size: 17px; line-height: 20px; }
   .dock .pill:nth-child(n) { min-width: 0; }
-  body:has(#project:not([hidden])) .dock .pill { padding-inline: clamp(10px, 3vw, 18px); }
+  .dock .pill[href="#cases"] { flex: 0 0 60px; }
+  .dock .pill.pink { flex: 0 0 124px; height: var(--mobile-nav-action-height); padding-inline: 20px; }
+  body:has(#project:not([hidden])) .dock .pill[href="#cases"] { background-color: #fff; color: #333; }
   .contact-status { bottom: calc(var(--dock-bottom) + var(--mobile-nav-height) + 16px); font-size: 15px; }
 
   .about { grid-template-columns: 1fr; gap: 28px; padding: 32px var(--edge) calc(116px + env(safe-area-inset-bottom, 0px)); }
@@ -481,19 +485,19 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .art { aspect-ratio: 497 / 405; }
   .art img.art-crop { object-fit: cover; }
   .project-back {
-    bottom: var(--dock-bottom);
-    left: 16px;
-    width: 92px;
-    height: var(--mobile-nav-height);
-    min-height: var(--mobile-nav-height);
+    bottom: calc(var(--dock-bottom) + var(--mobile-nav-padding));
+    left: max(4px, env(safe-area-inset-left, 0px));
+    width: var(--mobile-nav-action-height);
+    height: var(--mobile-nav-action-height);
+    min-height: var(--mobile-nav-action-height);
     gap: 6px;
-    padding-inline: 10px;
+    padding: 0;
     font-size: 17px;
     line-height: 20px;
     box-shadow: 0 2px 12px #0001;
   }
-  .project-back-icon { font-size: 18px; }
-  .project-back-label { white-space: nowrap; }
+  .project-back-icon { font-size: 22px; }
+  .project-back-label { display: none; }
   .palette { font-size: clamp(11px, 2.3vw, 20px); }
   .palette div { padding-left: 10%; }
 }
@@ -514,13 +518,6 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .project-hero { max-height: none; }
   .palette { font-size: clamp(10px, 2.7vw, 16px); }
   .palette div { padding-left: 8%; }
-}
-
-@media (max-width: 480px) {
-  body:has(#project:not([hidden])) .dock { max-width: calc(100% - 104px); }
-  .project-back { left: 8px; width: 38px; padding: 0; }
-  .project-back-icon { font-size: 22px; }
-  .project-back-label { display: none; }
 }
 
 @media (max-width: 360px) {
