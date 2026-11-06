@@ -426,9 +426,9 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .avatar-slot { grid-row: span 2; }
   .avatar { border-radius: 22px; }
   .identity .avatar-slot .avatar { animation: none; rotate: 0deg; transform: none; transition: none; }
-  .identity-title { padding: 0; }
+  .identity-title { align-self: start; padding: 0; }
   .identity h1 { max-width: 360px; font-size: 27px; line-height: 1.2; }
-  .identity-title p { margin-top: 8px; line-height: 26px; }
+  .identity-title p { margin-top: 8px; line-height: 24px; }
   .identity-title p span { display: block; white-space: nowrap; }
   .profiles { flex-wrap: wrap; gap: 8px; }
   .profiles .pill:nth-child(n) { width: auto; min-height: 46px; padding: 11px 20px; font-size: 18px; line-height: 24px; }
@@ -456,7 +456,13 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .dock .pill:nth-child(n) { min-width: 0; }
   .dock .pill[href="#cases"] { flex: 0 0 80px; }
   .dock .pill.pink { flex: 0 0 124px; height: var(--mobile-nav-action-height); padding-inline: 20px; }
-  body:has(#project:not([hidden])) .dock .pill[href="#cases"] { background-color: #fff; color: #333; }
+  body:has(#project:not([hidden])) .dock {
+    left: auto;
+    right: max(var(--edge), env(safe-area-inset-right, 0px));
+    translate: none;
+  }
+  body:has(#project:not([hidden])) .dock .pill[href="#cases"],
+  body:has(#project:not([hidden])) .dock .pill[href="#cases"]:is(:hover, :focus-visible, :active) { background-color: transparent; color: #333; }
   .contact-status { bottom: calc(var(--dock-bottom) + var(--mobile-nav-height) + 16px); font-size: 15px; }
 
   .about { grid-template-columns: 1fr; gap: 28px; padding: 32px var(--edge) calc(116px + env(safe-area-inset-bottom, 0px)); }
@@ -506,7 +512,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .art[data-file="sitik-1-3.webp"] img { object-position: left center; }
   .project-back {
     bottom: var(--dock-bottom);
-    left: max(4px, env(safe-area-inset-left, 0px));
+    left: max(var(--edge), env(safe-area-inset-left, 0px));
     width: var(--mobile-nav-height);
     height: var(--mobile-nav-height);
     min-height: var(--mobile-nav-height);
@@ -549,9 +555,8 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .identity h1 { font-size: 18px; }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 339px) {
   .project-back {
-    left: max(16px, env(safe-area-inset-left, 0px));
     bottom: calc(var(--dock-bottom) + var(--mobile-nav-height) + 12px);
   }
 }
