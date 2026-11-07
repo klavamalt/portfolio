@@ -198,7 +198,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
   color: var(--card-text, #fff);
 }
 .case-card:focus-visible { outline-offset: -5px; }
-.case-card img { position: absolute; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+.case-card img { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .case-card img { transition: scale .3s ease; }
 .case-card:hover img { scale: 1.05; }
 
@@ -217,7 +217,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
   .case-track.has-card-motion .case-card::after {
     content: "";
     position: absolute;
-    z-index: 1;
+    z-index: 3;
     inset: 0;
     border-radius: inherit;
     pointer-events: none;
@@ -242,16 +242,27 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
   to { background-position: var(--card-light, 50%) 50%; }
 }
 
+@media (min-width: 1024px) and (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .case-track.has-card-motion .case-card::after {
+    transition: opacity .25s ease;
+  }
+  .case-track.has-card-motion .case-card:hover::after {
+    animation: none;
+    background: radial-gradient(ellipse at var(--hover-light-x, 50%) var(--hover-light-y, 50%), #ffffff70, #ffc7e330 23%, transparent 58%);
+    opacity: .8;
+  }
+}
+
 .case-card[data-project="digital-breakthrough"] img { top: -9.59%; height: 101.75%; object-fit: fill; }
 .case-card::before {
   content: "";
   position: absolute;
-  z-index: -1;
+  z-index: 1;
   inset: auto 0 0;
   height: 38%;
   background: linear-gradient(transparent 13%, var(--card-color) 46%);
 }
-.case-card-copy { position: absolute; inset: auto calc(28 * var(--unit)) calc(28 * var(--unit)) calc(31 * var(--unit)); }
+.case-card-copy { position: absolute; z-index: 2; inset: auto calc(28 * var(--unit)) calc(28 * var(--unit)) calc(31 * var(--unit)); }
 .case-card h2 { font-size: calc(var(--pill-font-size) + 2px); font-weight: 400; }
 .case-card p { margin-top: calc(9 * var(--unit)); min-height: 2.4em; max-inline-size: 90%; font-size: calc(20 * var(--unit)); line-height: 1.2; text-wrap: balance; opacity: .9; }
 .case-card[data-project="context"] p { white-space: pre-line; text-wrap: wrap; }

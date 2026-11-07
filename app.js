@@ -44,7 +44,7 @@ function image(file, alt, className, loading = 'eager') {
   return node;
 }
 
-function caseCard(project, index) {
+function caseCard(project) {
   const card = element('a', 'case-card');
   card.href = '#case/' + project.id;
   card.dataset.project = project.id;
@@ -54,9 +54,7 @@ function caseCard(project, index) {
   const copy = element('div', 'case-card-copy');
   const title = element('h2', null, project.title);
   copy.append(title, element('p', null, project.description));
-  const onHome = !location.hash.startsWith('#case/') && location.hash !== '#contacts';
-  const eagerCover = onHome && !matchMedia('(max-width: 1023px)').matches && index < 2;
-  const cover = image(project.cover, '', null, eagerCover ? 'eager' : 'lazy');
+  const cover = image(project.cover, '');
   card.append(cover, copy);
   return card;
 }
@@ -222,7 +220,7 @@ function updateCaseMotion() {
   for (const { card, bounds } of positions) {
     if (bounds.right < viewport.left || bounds.left > viewport.right) continue;
     const offset = Math.max(-1, Math.min(1, (bounds.left + bounds.width / 2 - center) / (viewport.width / 2 + bounds.width / 2)));
-    card.style.setProperty('--card-tilt', (-offset * 9).toFixed(2) + 'deg');
+    card.style.setProperty('--card-tilt', (-offset * 12).toFixed(2) + 'deg');
     card.style.setProperty('--card-depth', (1 - Math.abs(offset) * 0.035).toFixed(4));
     card.style.setProperty('--card-light', (50 + offset * 38).toFixed(2) + '%');
   }
@@ -247,6 +245,14 @@ function syncCaseMotion() {
 }
 
 track.addEventListener('scroll', requestCaseMotion, { passive: true });
+track.addEventListener('pointermove', event => {
+  if (!hoverPointer.matches || mobileLayout.matches || reducedMotion.matches) return;
+  const card = event.target.closest('.case-card');
+  if (!card) return;
+  const bounds = card.getBoundingClientRect();
+  card.style.setProperty('--hover-light-x', (event.clientX - bounds.left) / bounds.width * 100 + '%');
+  card.style.setProperty('--hover-light-y', (event.clientY - bounds.top) / bounds.height * 100 + '%');
+});
 track.addEventListener('focusin', event => {
   const card = event.target.closest('.case-card');
   if (card) card.classList.add('is-revealed');
