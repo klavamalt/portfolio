@@ -236,7 +236,7 @@ const projects = [
             "alt": "Маскот в рекламе «Ситика»"
           },
           {
-            "file": "art-168-50669.png",
+            "file": "art-168-50669.webp",
             "alt": "Варианты маскота"
           }
         ]
@@ -265,7 +265,7 @@ const projects = [
         ],
         "gallery": [
           {
-            "file": "art-179-100928.png",
+            "file": "art-179-100928.webp",
             "video": "context-intro.mp4",
             "alt": "Первый экран спецпроекта"
           },
@@ -320,7 +320,7 @@ const projects = [
             ]
           },
           {
-            "file": "art-179-100963.png",
+            "file": "art-179-100963.webp",
             "video": "context-story.mp4",
             "alt": "Телефон на жёлтом фоне"
           }
@@ -344,7 +344,7 @@ const projects = [
             "height": 405
           },
           {
-            "file": "art-179-100972.png",
+            "file": "art-179-100972.webp",
             "alt": "Публикации в соцсетях"
           },
           {
@@ -377,7 +377,7 @@ const projects = [
         ],
         "gallery": [
           {
-            "file": "drophunter-product-figma.png",
+            "file": "drophunter-product-figma.webp",
             "alt": "Карточка товара Miu Miu"
           },
           {
@@ -413,16 +413,16 @@ const projects = [
         ],
         "gallery": [
           {
-            "file": "drophunter-posters-3x.png",
+            "file": "drophunter-posters-3x.webp",
             "alt": "Три рекламных постера",
             "height": 405
           },
           {
-            "file": "drophunter-selection-figma.png",
+            "file": "drophunter-selection-figma.webp",
             "alt": "Экран выбора товаров"
           },
           {
-            "file": "drophunter-deals-figma.png",
+            "file": "drophunter-deals-figma.webp",
             "alt": "Профиль и активные сделки"
           }
         ]

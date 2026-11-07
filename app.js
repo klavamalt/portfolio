@@ -14,7 +14,19 @@ const projectOrder = { sitik: 0, context: 1 };
 const visibleProjects = projects.filter(project => !project.hidden)
   .sort((a, b) => (projectOrder[a.id] ?? 2) - (projectOrder[b.id] ?? 2));
 const loader = document.querySelector('.site-loader');
-const preloadedVideos = new Map();
+const projectVideoObserver = new IntersectionObserver(entries => {
+  for (const { target: video, isIntersecting } of entries) {
+    if (!isIntersecting) {
+      video.pause();
+      continue;
+    }
+    if (!video.getAttribute('src')) {
+      video.poster = 'assets/' + video.dataset.poster;
+      video.src = 'assets/' + video.dataset.file;
+    }
+    video.play().catch(() => {});
+  }
+}, { rootMargin: '300px 0px' });
 
 function element(tag, className, content) {
   const node = document.createElement(tag);
@@ -23,8 +35,10 @@ function element(tag, className, content) {
   return node;
 }
 
-function image(file, alt, className) {
+function image(file, alt, className, loading = 'eager') {
   const node = element('img', className);
+  node.loading = loading;
+  node.decoding = 'async';
   node.src = 'assets/' + file;
   node.alt = alt;
   return node;
@@ -40,9 +54,9 @@ function caseCard(project, index) {
   const copy = element('div', 'case-card-copy');
   const title = element('h2', null, project.title);
   copy.append(title, element('p', null, project.description));
-  const cover = image(project.cover, '');
-  cover.decoding = 'async';
-  if (index > 1) cover.loading = 'lazy';
+  const onHome = !location.hash.startsWith('#case/') && location.hash !== '#contacts';
+  const eagerCover = onHome && !matchMedia('(max-width: 1023px)').matches && index < 2;
+  const cover = image(project.cover, '', null, eagerCover ? 'eager' : 'lazy');
   card.append(cover, copy);
   return card;
 }
@@ -79,8 +93,8 @@ function artwork(art) {
   if (art.video) {
     const video = element('video');
     video.dataset.file = art.video;
-    video.src = preloadedVideos.get(art.video) || 'assets/' + art.video;
-    video.poster = 'assets/' + art.file;
+    video.dataset.poster = art.file;
+    video.preload = 'none';
     video.muted = true;
     video.autoplay = true;
     video.loop = true;
@@ -89,9 +103,7 @@ function artwork(art) {
     figure.append(video);
     return figure;
   }
-  const graphic = image(art.file, art.alt);
-  graphic.loading = 'lazy';
-  graphic.decoding = 'async';
+  const graphic = image(art.file, art.alt, null, 'lazy');
   if (art.crop) {
     graphic.classList.add('art-crop');
     ['left', 'top', 'width', 'height'].forEach((property, index) => {
@@ -128,6 +140,7 @@ function renderProject(project) {
   back.setAttribute('aria-label', 'Назад к кейсам');
   back.append(backIcon, element('span', 'project-back-label', 'Назад'));
   const hero = image(project.hero, 'Обложка проекта «' + project.title.split(' | ')[0] + '»', 'project-hero');
+  hero.fetchPriority = 'high';
   const body = element('div', 'project-content');
   const menu = element('nav', 'project-menu');
   menu.setAttribute('aria-label', 'Разделы кейса');
@@ -153,6 +166,7 @@ function renderProject(project) {
   body.append(menu, sections);
   projectPage.dataset.project = project.id;
   projectPage.replaceChildren(title, back, hero, body);
+  projectPage.querySelectorAll('video').forEach(video => projectVideoObserver.observe(video));
 }
 
 function updateProjectMenu() {
@@ -186,6 +200,62 @@ let appliedPosition = 0;
 let carouselPausedUntil = 0;
 let carouselTouching = false;
 const hoverPointer = matchMedia('(hover: hover)');
+let caseMotionFrame = 0;
+const caseRevealObserver = new IntersectionObserver(entries => {
+  let order = 0;
+  for (const { target: card, isIntersecting } of entries) {
+    if (!isIntersecting) continue;
+    card.style.setProperty('--card-reveal-delay', order++ * 90 + 'ms');
+    card.classList.add('is-revealed');
+    caseRevealObserver.unobserve(card);
+  }
+}, { threshold: 0.12 });
+
+function updateCaseMotion() {
+  caseMotionFrame = 0;
+  if (home.hidden || reducedMotion.matches || document.hidden) return;
+  const viewport = track.getBoundingClientRect();
+  if (viewport.bottom <= 0 || viewport.top >= window.innerHeight || !viewport.width) return;
+  const center = viewport.left + viewport.width / 2;
+  // Read the geometry first, then update only the visible cards.
+  const positions = Array.from(track.children, card => ({ card, bounds: card.getBoundingClientRect() }));
+  for (const { card, bounds } of positions) {
+    if (bounds.right < viewport.left || bounds.left > viewport.right) continue;
+    const offset = Math.max(-1, Math.min(1, (bounds.left + bounds.width / 2 - center) / (viewport.width / 2 + bounds.width / 2)));
+    card.style.setProperty('--card-tilt', (-offset * 9).toFixed(2) + 'deg');
+    card.style.setProperty('--card-depth', (1 - Math.abs(offset) * 0.035).toFixed(4));
+    card.style.setProperty('--card-light', (50 + offset * 38).toFixed(2) + '%');
+  }
+}
+
+function requestCaseMotion() {
+  if (caseMotionFrame || home.hidden || reducedMotion.matches || document.body.classList.contains('is-loading')) return;
+  caseMotionFrame = requestAnimationFrame(updateCaseMotion);
+}
+
+function syncCaseMotion() {
+  cancelAnimationFrame(caseMotionFrame);
+  caseMotionFrame = 0;
+  caseRevealObserver.disconnect();
+  const enabled = !home.hidden && !reducedMotion.matches && !document.body.classList.contains('is-loading');
+  track.classList.toggle('has-card-motion', enabled);
+  if (!enabled) return;
+  for (const card of track.children) {
+    if (!card.classList.contains('is-revealed')) caseRevealObserver.observe(card);
+  }
+  requestCaseMotion();
+}
+
+track.addEventListener('scroll', requestCaseMotion, { passive: true });
+track.addEventListener('focusin', event => {
+  const card = event.target.closest('.case-card');
+  if (card) card.classList.add('is-revealed');
+});
+track.addEventListener('animationend', event => {
+  if (event.animationName === 'case-light-sweep') event.target.style.setProperty('--card-reveal-delay', '0ms');
+});
+window.addEventListener('scroll', requestCaseMotion, { passive: true });
+window.addEventListener('resize', requestCaseMotion);
 
 function setCarouselPosition(position) {
   const end = Math.max(0, track.scrollWidth - track.clientWidth);
@@ -218,6 +288,7 @@ function advanceCarousel(time) {
 }
 
 function syncCarousel() {
+  syncCaseMotion();
   cancelAnimationFrame(carouselFrame);
   carouselFrame = 0;
   lastFrameTime = undefined;
@@ -253,6 +324,8 @@ track.addEventListener('keydown', event => {
 });
 
 function renderRoute(moveFocus = false) {
+  projectVideoObserver.disconnect();
+  projectPage.querySelectorAll('video').forEach(video => video.pause());
   const route = location.hash.slice(1);
   const project = visibleProjects.find(item => route === 'case/' + item.id);
   const showContacts = route === 'contacts';
@@ -287,34 +360,12 @@ function renderRoute(moveFocus = false) {
 }
 
 async function preloadPortfolio() {
-  if (mobileLayout.matches) {
-    // Case galleries load on demand so phones do not download the entire portfolio.
-    await Promise.allSettled([
-      ...Array.from(document.querySelectorAll('main img:not([loading="lazy"])'), img => img.decode()),
-      document.fonts.load('400 16px "Portfolio Suisse"'),
-    ]);
-    return;
-  }
-  const artwork = visibleProjects.flatMap(project => project.sections.flatMap(section => section.gallery));
-  const imageSources = new Set([
-    ...Array.from(document.querySelectorAll('main img'), img => img.src),
-    ...visibleProjects.flatMap(project => [project.cover, project.hero]).map(file => 'assets/' + file),
-    ...artwork.filter(art => art.file).map(art => 'assets/' + art.file),
-  ].map(src => new URL(src, document.baseURI).href));
-  const videos = new Set(artwork.filter(art => art.video).map(art => art.video));
-
+  // Wait only for the visible page's essential images; galleries load on demand.
+  const images = Array.from(document.querySelectorAll('main img:not([loading="lazy"])'))
+    .filter(img => !img.closest('[hidden]'));
   await Promise.allSettled([
-    ...Array.from(imageSources, async src => {
-      const img = new Image();
-      img.src = src;
-      await img.decode();
-    }),
-    ...Array.from(videos, async file => {
-      const response = await fetch('assets/' + file);
-      if (!response.ok) throw new Error('Could not load ' + file);
-      preloadedVideos.set(file, URL.createObjectURL(await response.blob()));
-    }),
-    document.fonts.load('400 16px "Portfolio Inter"'),
+    ...images.map(img => img.decode()),
+    document.fonts.load('400 16px "Portfolio Suisse"'),
   ]);
 }
 
@@ -337,9 +388,12 @@ async function openPortfolio() {
   const main = document.querySelector('main');
   const dock = document.querySelector('.dock');
   main.inert = dock.inert = true;
+  const initialRoute = location.hash;
+  renderRoute();
   await Promise.all([preloadPortfolio(), playLoader()]);
   document.body.classList.remove('is-loading');
-  renderRoute();
+  if (location.hash !== initialRoute) renderRoute();
+  else syncCarousel();
   main.inert = dock.inert = false;
   if (reducedMotion.matches) loader.remove();
   else {
