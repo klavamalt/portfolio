@@ -21,35 +21,17 @@ const projects = [
         ],
         "gallery": [
           {
-            "file": "iskra-1-1.jpg",
-            "alt": "Плакаты «Искры»",
-            "crop": [
-              -0.54,
-              0,
-              144.94,
-              100.25
-            ]
+            "file": "iskra-1-1-compressed.png",
+            "alt": "Плакаты «Искры»"
           },
           {
-            "file": "iskra-1-2.jpg",
-            "alt": "Экспозиция с фирменной графикой",
-            "crop": [
-              -25.25,
-              0,
-              144.87,
-              100
-            ]
+            "file": "iskra-1-2-compressed.png",
+            "alt": "Экспозиция с фирменной графикой"
           },
           {
-            "file": "iskra-1-3.jpg",
+            "file": "iskra-1-3-compressed.png",
             "alt": "Монохромный полиграфический макет",
-            "height": 500,
-            "crop": [
-              -0.1,
-              -7.04,
-              100.1,
-              114.08
-            ]
+            "height": 500
           }
         ]
       },
@@ -77,18 +59,12 @@ const projects = [
             "palette": "iskra"
           },
           {
-            "file": "iskra-2-2.jpg",
+            "file": "iskra-2-2-compressed.png",
             "alt": "Фирменная полиграфия"
           },
           {
-            "file": "iskra-2-3.jpg",
-            "alt": "Навигация и оформление пространства",
-            "crop": [
-              -0.54,
-              0,
-              144.94,
-              100.25
-            ]
+            "file": "iskra-2-3-compressed.png",
+            "alt": "Навигация и оформление пространства"
           }
         ]
       },
@@ -101,29 +77,17 @@ const projects = [
         ],
         "gallery": [
           {
-            "file": "iskra-3-1.jpg",
+            "file": "iskra-3-1-compressed.png",
             "alt": "Зона регистрации",
-            "height": 405,
-            "crop": [
-              0,
-              -20.66,
-              100,
-              140.69
-            ]
+            "height": 405
           },
           {
-            "file": "iskra-interior.jpg",
+            "file": "iskra-interior-compressed.png",
             "alt": "Оформление интерьера"
           },
           {
-            "file": "iskra-3-3.jpg",
-            "alt": "Фирменная упаковка",
-            "crop": [
-              -22.43,
-              0,
-              144.87,
-              100
-            ]
+            "file": "iskra-3-3-compressed.png",
+            "alt": "Фирменная упаковка"
           }
         ]
       }
@@ -151,29 +115,17 @@ const projects = [
         ],
         "gallery": [
           {
-            "file": "sitik-1-1.webp",
+            "file": "sitik-1-1-compressed.png",
             "alt": "Фирменные аксессуары «Ситика»"
           },
           {
-            "file": "sitik-1-2.webp",
-            "alt": "Фирменный автомобиль",
-            "crop": [
-              0,
-              -19.25,
-              100,
-              163.67
-            ]
+            "file": "sitik-1-2-compressed.png",
+            "alt": "Фирменный автомобиль"
           },
           {
-            "file": "sitik-1-3.webp",
+            "file": "sitik-1-3-compressed.png",
             "alt": "Наружная реклама",
-            "height": 500,
-            "crop": [
-              0,
-              -7.65,
-              100,
-              135.07
-            ]
+            "height": 500
           }
         ]
       },
@@ -198,23 +150,17 @@ const projects = [
         ],
         "gallery": [
           {
-            "file": "sitik-2-1.webp",
+            "file": "sitik-2-1-compressed.png",
             "alt": "Оклейка автомобиля",
             "height": 405
           },
           {
-            "file": "sitik-logo-grid.svg",
+            "file": "sitik-logo-grid-compressed.png",
             "alt": "Логотип и сетка"
           },
           {
-            "file": "sitik-2-3.webp",
-            "alt": "Разметка и автомобиль, вид сверху",
-            "crop": [
-              0,
-              -48.71,
-              100,
-              153.7
-            ]
+            "file": "sitik-2-3-compressed.png",
+            "alt": "Разметка и автомобиль, вид сверху"
           }
         ]
       },
@@ -227,16 +173,16 @@ const projects = [
         ],
         "gallery": [
           {
-            "file": "sitik-3-1.webp",
+            "file": "sitik-3-1-compressed.png",
             "alt": "Повороты маскота",
             "height": 405
           },
           {
-            "file": "sitik-3-2.webp",
+            "file": "sitik-3-2-compressed.png",
             "alt": "Маскот в рекламе «Ситика»"
           },
           {
-            "file": "art-168-50669.webp",
+            "file": "art-168-50669-compressed.png",
             "alt": "Варианты маскота"
           }
         ]
@@ -270,17 +216,11 @@ const projects = [
             "alt": "Первый экран спецпроекта"
           },
           {
-            "file": "context-1-2.jpg",
-            "alt": "Мобильный экран спецпроекта",
-            "crop": [
-              -25.25,
-              0,
-              144.87,
-              100
-            ]
+            "file": "context-1-2-compressed.png",
+            "alt": "Мобильный экран спецпроекта"
           },
           {
-            "file": "context-1-3.webp",
+            "file": "context-1-3-compressed.png",
             "alt": "Три экрана интерактивной истории",
             "height": 500
           }
@@ -310,14 +250,8 @@ const projects = [
             "palette": "context"
           },
           {
-            "file": "context-2-2.jpg",
-            "alt": "Сцена из интерактивной истории",
-            "crop": [
-              -21.92,
-              0.49,
-              143.84,
-              99.29
-            ]
+            "file": "context-2-2-compressed.png",
+            "alt": "Сцена из интерактивной истории"
           },
           {
             "file": "art-179-100963.webp",
@@ -339,16 +273,16 @@ const projects = [
         ],
         "gallery": [
           {
-            "file": "context-3-1.webp",
+            "file": "context-3-1-compressed.png",
             "alt": "Статистика и публикации",
             "height": 405
           },
           {
-            "file": "art-179-100972.webp",
+            "file": "art-179-100972-compressed.png",
             "alt": "Публикации в соцсетях"
           },
           {
-            "file": "context-3-3.webp",
+            "file": "context-3-3-compressed.png",
             "alt": "Фирменный стикер"
           }
         ]
@@ -362,7 +296,7 @@ const projects = [
     "icon": "💻",
     "color": "#e566e5",
     "cover": "drophunter-cover.webp",
-    "hero": "drophunter-hero-figma.webp",
+    "hero": "drophunter-hero-figma-compressed.png",
     "sections": [
       {
         "notes": [
@@ -377,18 +311,17 @@ const projects = [
         ],
         "gallery": [
           {
-            "file": "drophunter-product-figma.webp",
+            "file": "drophunter-product-figma-compressed.png",
             "alt": "Карточка товара Miu Miu"
           },
           {
-            "file": "drophunter-perfume.webp",
+            "file": "drophunter-perfume-compressed.png",
             "alt": "Розовый флакон"
           },
           {
-            "file": "drophunter-bags.webp",
+            "file": "drophunter-bags-compressed.png",
             "alt": "Кампания Drophunter",
-            "height": 500,
-            "crop": [0, -0.71, 100, 113.96]
+            "height": 500
           }
         ]
       },
@@ -413,16 +346,16 @@ const projects = [
         ],
         "gallery": [
           {
-            "file": "drophunter-posters-3x.webp",
+            "file": "drophunter-posters-3x-compressed.png",
             "alt": "Три рекламных постера",
             "height": 405
           },
           {
-            "file": "drophunter-selection-figma.webp",
+            "file": "drophunter-selection-figma-compressed.png",
             "alt": "Экран выбора товаров"
           },
           {
-            "file": "drophunter-deals-figma.webp",
+            "file": "drophunter-deals-figma-compressed.png",
             "alt": "Профиль и активные сделки"
           }
         ]
@@ -436,15 +369,14 @@ const projects = [
         ],
         "gallery": [
           {
-            "file": "drophunter-screens-3x.webp",
+            "file": "drophunter-screens-3x-compressed.png",
             "alt": "Три экрана приложения",
             "height": 500
           },
           {
-            "file": "drophunter-campaign.webp",
+            "file": "drophunter-campaign-compressed.png",
             "alt": "Рекламная графика Drophunter",
-            "height": 500,
-            "crop": [0, -10.61, 100, 113.85]
+            "height": 500
           }
         ]
       }

@@ -345,15 +345,15 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   background: linear-gradient(to right, #fff 50%, #fcff00 50%);
 }
 .project[data-project="drophunter"] .project-hero {
-  --hero-height: min(56.25cqw, 68svh, max(220px, 100svh - 260px));
-  /* Continue the checkerboard from the centered 2560 × 1440 artwork. */
-  --tile-width: calc(var(--hero-height) * 128 / 1440);
-  --tile-height: calc(var(--hero-height) * 101.65 / 1440);
+  --hero-height: min(49.140625cqw, 68svh, max(220px, 100svh - 260px));
+  /* Continue the checkerboard from the centered 2560 × 1258 artwork. */
+  --tile-width: calc(var(--hero-height) * 128 / 1258);
+  --tile-height: calc(var(--hero-height) * 101.65 / 1258);
   height: var(--hero-height);
   object-fit: contain;
   background-image: conic-gradient(#f783fb 25%, #f67cfb 0 50%, #f783fb 0 75%, #f67cfb 0);
   background-size: var(--tile-width) var(--tile-height);
-  background-position: calc(50% + var(--tile-width) / 2) calc(var(--hero-height) * -17.5 / 1440);
+  background-position: calc(50% + var(--tile-width) / 2) calc(var(--hero-height) * -17.5 / 1258);
 }
 .project[data-project="digital-breakthrough"] .project-hero { object-position: center bottom; }
 .project[data-project="sitik"] .project-hero { object-position: center 60%; }
@@ -525,7 +525,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   }
   .project[data-project] .project-hero { object-fit: fill; }
   .project[data-project="drophunter"] .project-hero {
-    --hero-height: calc(56.25cqw + 40px);
+    --hero-height: calc(49.140625cqw + 40px);
     height: auto;
     aspect-ratio: auto;
     padding-block: 20px;
