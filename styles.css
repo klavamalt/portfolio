@@ -525,11 +525,13 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   }
   .project[data-project] .project-hero { object-fit: fill; }
   .project[data-project="drophunter"] .project-hero {
-    --hero-height: calc(49.140625cqw + 40px);
+    --hero-height: 49.140625cqw;
     height: auto;
+    max-height: none;
     aspect-ratio: auto;
-    padding-block: 20px;
+    padding: 0;
     object-fit: contain;
+    background: none;
   }
   .project-content { display: block; padding: 0 var(--edge); }
   .project-menu {
@@ -554,8 +556,9 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .art { border-radius: 18px; }
   .art { aspect-ratio: 497 / 405; }
   .art img.art-crop { object-fit: cover; }
-  .art[data-file="sitik-2-1.webp"] { display: none; }
-  .art[data-file="sitik-1-3.webp"] img { object-position: left center; }
+  .art[data-file^="sitik-2-1"],
+  .art[data-file^="sitik-3-1"] { display: none; }
+  .art[data-file^="sitik-1-3"] img { object-position: left center; }
   .project-back { display: none; }
   .palette { font-size: clamp(11px, 2.3vw, 20px); }
   .palette div { padding-left: 10%; }
