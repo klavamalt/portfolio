@@ -211,7 +211,7 @@ const caseRevealObserver = new IntersectionObserver(entries => {
 
 function updateCaseMotion() {
   caseMotionFrame = 0;
-  if (home.hidden || reducedMotion.matches || document.hidden) return;
+  if (home.hidden || mobileLayout.matches || reducedMotion.matches || document.hidden) return;
   const viewport = track.getBoundingClientRect();
   if (viewport.bottom <= 0 || viewport.top >= window.innerHeight || !viewport.width) return;
   const center = viewport.left + viewport.width / 2;
@@ -235,7 +235,7 @@ function syncCaseMotion() {
   cancelAnimationFrame(caseMotionFrame);
   caseMotionFrame = 0;
   caseRevealObserver.disconnect();
-  const enabled = !home.hidden && !reducedMotion.matches && !document.body.classList.contains('is-loading');
+  const enabled = !home.hidden && !mobileLayout.matches && !reducedMotion.matches && !document.body.classList.contains('is-loading');
   track.classList.toggle('has-card-motion', enabled);
   if (!enabled) return;
   for (const card of track.children) {
@@ -283,6 +283,9 @@ function advanceCarousel(time) {
   if (document.hidden || carouselTouching || time < carouselPausedUntil ||
       (hoverPointer.matches && track.matches(':hover')) ||
       track.matches(':focus-visible, :has(:focus-visible)')) return;
+
+  const bounds = track.getBoundingClientRect();
+  if (bounds.top >= window.innerHeight || bounds.bottom <= 0) return;
 
   const end = Math.max(0, track.scrollWidth - track.clientWidth);
   if (end === 0) return;

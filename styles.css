@@ -202,7 +202,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .case-card img { transition: scale .3s ease; }
 .case-card:hover img { scale: 1.05; }
 
-@media (prefers-reduced-motion: no-preference) {
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
   .case-track.has-card-motion .case-card {
     opacity: 0;
     transform: perspective(1100px) translate3d(18px, 0, 0) rotateY(-18deg) scale(.93);
@@ -491,6 +491,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
 
   .work { padding: 40px 0 0; scroll-margin-top: 24px; }
   .work-heading { display: block; margin: 0 var(--edge) 36px; font-size: 25px; font-weight: 400; }
+  .work-heading::after { content: 'Листай →'; float: right; margin-top: 6px; font-size: 14px; color: #888; }
   .case-track {
     display: flex;
     gap: 10px;
