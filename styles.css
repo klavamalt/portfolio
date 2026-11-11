@@ -651,9 +651,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .project-menu button { justify-content: center; flex: 1; min-height: 44px; padding: 10px 12px; border-radius: 999px; font-size: 17px; }
   .project-menu button::before, .project-menu button::after { display: none; }
   .project-menu button[aria-current] { background: #f0f0f0; }
-  .project-menu:has(.project-link-holder) { flex-wrap: wrap; }
-  .project-link-holder { flex-basis: 100%; margin-top: 0; }
-  .project[data-project="context"] .project-section { scroll-margin-top: calc(132px + env(safe-area-inset-top, 0px)); }
+  .project-link-holder { display: none; }
   .project-sections { --section-gap: 42px; }
   .project-section { scroll-margin-top: calc(92px + env(safe-area-inset-top, 0px)); }
   .project-notes { gap: 34px; }
