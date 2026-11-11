@@ -577,7 +577,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .identity .avatar-slot .avatar { animation: none; rotate: 0deg; transform: none; transition: none; }
   .identity-title { align-self: start; padding: 0; }
   .identity h1 { max-width: 360px; font-size: 27px; line-height: 1.2; }
-  .identity-title p { margin-top: 6px; font-size: 17px; line-height: 1.45; }
+  .identity-title p { margin-top: 6px; font-size: 16px; line-height: 1.45; }
   .identity-title p span { display: block; white-space: nowrap; }
   .profiles { flex-wrap: wrap; gap: 8px; }
   .profiles .pill:nth-child(n) { width: auto; min-height: 46px; padding: 11px 20px; font-size: 18px; line-height: 24px; }
@@ -677,7 +677,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .avatar-slot { grid-row: 1; }
   .avatar { border-radius: 18px; }
   .identity h1 { font-size: clamp(18px, 5.1vw, 24px); }
-  .identity-title p { font-size: 17px; }
+  .identity-title p { font-size: 16px; }
   .profiles { grid-column: 1 / -1; }
   .profiles .pill:nth-child(n) { flex: 1; padding-inline: 12px; }
   .project-notes, .gallery { grid-template-columns: minmax(0, 1fr); }
