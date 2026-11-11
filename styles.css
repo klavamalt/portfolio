@@ -498,6 +498,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
 
   .work { padding: 40px 0 0; scroll-margin-top: 24px; }
   .work-heading { display: block; margin: 0 var(--edge) 36px; font-size: 25px; font-weight: 400; }
+  .work-heading::after { content: '→'; display: inline-block; margin-left: 12px; color: #888; }
   .case-track {
     display: flex;
     gap: 6px;
