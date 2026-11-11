@@ -271,8 +271,6 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 }
 .case-card:focus-visible { outline-offset: -5px; }
 .case-card img { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.case-card img { transition: scale .3s ease; }
-.case-card:hover img { scale: 1.05; }
 
 @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
   .case-track.has-card-motion .case-card {
@@ -504,8 +502,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
 .project-menu button[aria-current]::before { flex-basis: 46px; background-color: #111; }
 
 @media (prefers-reduced-motion: reduce) {
-  .dock .pill, .case-card img, .project-menu button, .project-menu button::before { transition: none; }
-  .case-card:hover img { scale: none; }
+  .dock .pill, .project-menu button, .project-menu button::before { transition: none; }
 }
 .palette { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; font-size: clamp(15px, 2.14vw, 27.45px); }
 .palette div { display: flex; align-items: center; padding: 8% 0 8% 19%; white-space: pre-line; }
