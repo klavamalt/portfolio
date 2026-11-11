@@ -200,7 +200,16 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .profile-copy, .about-copy { display: grid; gap: calc(30 * var(--unit)); }
 .profile-copy { margin-top: calc(48 * var(--unit)); max-width: calc(598 * var(--unit)); }
 .profile-copy h2, .about-copy h2 { margin-bottom: calc(7 * var(--unit)); font-size: calc(20.25 * var(--unit)); font-weight: 400; opacity: .76; }
-.profile-copy h2 { font-size: calc(18 * var(--unit) - 2px); }
+.profile-copy h2 {
+  font-family: "Portfolio Suisse", sans-serif;
+  font-size: calc(18 * var(--unit) - 2px);
+  font-weight: 400;
+  color: #fff;
+  opacity: .7;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 .profile-copy p {
   font-family: "Portfolio Suisse Book", sans-serif;
   font-size: calc(var(--profile-text-size) + 2px);
