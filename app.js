@@ -161,6 +161,15 @@ function renderProject(project) {
     sections.append(block);
   });
 
+  if (project.id === 'context') {
+    const linkHolder = element('div', 'project-link-holder');
+    const link = element('a', 'project-site-link', 'context.feedback');
+    link.href = 'https://context.feedback/';
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    linkHolder.append(link);
+    menu.append(linkHolder);
+  }
   body.append(menu, sections);
   projectPage.dataset.project = project.id;
   projectPage.replaceChildren(title, back, hero, body);
