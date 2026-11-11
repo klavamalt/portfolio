@@ -421,6 +421,33 @@ openPortfolio();
 const avatarSlot = document.querySelector('.avatar-slot');
 const avatar = avatarSlot.querySelector('.avatar');
 
+const emailCopy = document.querySelector('.email-copy');
+let emailCopyTimer;
+async function copyEmail() {
+  const feedback = emailCopy.querySelector('.email-copy-feedback');
+  try {
+    await navigator.clipboard.writeText('emi4kaitslow@icloud.com');
+    feedback.textContent = 'Почта скопирована';
+  } catch {
+    feedback.textContent = 'emi4kaitslow@icloud.com';
+  }
+  emailCopy.classList.add('is-copied');
+  clearTimeout(emailCopyTimer);
+  emailCopyTimer = setTimeout(() => {
+    emailCopy.classList.remove('is-copied');
+    feedback.textContent = '';
+  }, 2500);
+}
+emailCopy.addEventListener('click', copyEmail);
+window.addEventListener('keydown', event => {
+  if (event.code !== 'KeyC' || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey || event.repeat ||
+      home.hidden || document.body.classList.contains('is-loading') ||
+      event.target.closest('input, textarea, select, [contenteditable]:not([contenteditable="false"])') ||
+      window.getSelection()?.toString()) return;
+  event.preventDefault();
+  copyEmail();
+});
+
 avatarSlot.addEventListener('pointermove', event => {
   if (event.pointerType === 'touch' || reducedMotion.matches) return;
 
