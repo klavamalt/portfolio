@@ -71,7 +71,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 }
 
 .profile {
-  --profile-text-size: calc(20 * var(--unit) - 2px);
+  --profile-text-size: 16px;
   padding: var(--home-top) calc(19 * var(--unit)) 0 var(--edge);
   background: #181818;
   color: #e8e8e8;
@@ -158,7 +158,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .avatar img { position: absolute; max-width: none; }
 .avatar-background { width: 211.13%; height: 149.67%; left: -49.28%; top: -15.07%; transform: rotate(180deg); object-fit: cover; }
 .avatar-portrait { width: 141.24%; height: 212.07%; left: -41.02%; top: -4.69%; }
-.identity-title { padding-left: calc(9 * var(--unit)); padding-top: calc(4 * var(--unit)); }
+.identity-title { align-self: start; padding-left: calc(9 * var(--unit)); padding-top: 0; }
 .identity h1 { font-size: calc(29 * var(--unit) - 4px); font-weight: 400; line-height: 1.3; text-transform: uppercase; }
 .identity h1 span { font-size: 1.15em; }
 .identity-title p { margin-top: 3px; color: #b7b7b7; }
@@ -203,7 +203,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .profile-copy h2, .about-copy h2 { margin-bottom: calc(7 * var(--unit)); font-size: calc(20.25 * var(--unit)); font-weight: 400; opacity: .76; }
 .profile-copy h2 {
   font-family: "Portfolio Suisse", sans-serif;
-  font-size: calc(18 * var(--unit));
+  font-size: var(--profile-text-size);
   font-weight: 400;
   color: #fff;
   opacity: .7;
@@ -213,7 +213,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 }
 .profile-copy p {
   font-family: "Portfolio Suisse Book", sans-serif;
-  font-size: calc(var(--profile-text-size) + 2px);
+  font-size: var(--profile-text-size);
   line-height: 1.25;
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
@@ -226,7 +226,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
   padding: 0;
   background: none;
   color: #b7b7b7;
-  font: 400 calc(var(--profile-text-size) - 2px)/1.5 "Portfolio Suisse Book", sans-serif;
+  font: 400 var(--profile-text-size)/1.5 "Portfolio Suisse Book", sans-serif;
   text-align: left;
   cursor: pointer;
   -webkit-font-smoothing: antialiased;
@@ -346,6 +346,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .profile-copy p, .case-card p { font-weight: 400; }
 
 @media (min-width: 1024px) {
+  .identity h1 { line-height: 1; }
   .profiles .pill, .dock .pill { padding-block: calc(10 * var(--unit) + 1px); }
   .profiles .pill:nth-child(1) { width: calc(166.5 * var(--unit) * .98 + 2px); }
   .profiles .pill:nth-child(2) { width: calc(94.5 * var(--unit) * .98 + 2px); }
@@ -389,10 +390,8 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 }
 @media (min-width: 1600px) {
   .home { --home-scale: .95px; }
-  .profile { --profile-text-size: calc((20 * var(--unit) - 2px) * 1.02); padding-left: calc(var(--edge) + 30px); }
+  .profile { padding-left: calc(var(--edge) + 30px); }
   .profile-copy { gap: calc(30 * var(--unit) + 20px); }
-  .profile-copy h2 { font-size: calc(var(--profile-text-size) + 2px); }
-  .email-copy { font-size: calc(var(--profile-text-size) + 2px); }
   .case-card { --card-scale: calc(.97 * 1.02); }
 }
 
@@ -572,8 +571,8 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .profiles .pill:nth-child(n) { width: auto; min-height: 46px; padding: 11px 20px; font-size: 18px; line-height: 24px; }
   .profiles [data-contact="dprofile"] { display: none; }
   .profile-copy { max-width: 620px; margin-top: 42px; gap: 44px; }
-  .profile-copy h2 { margin-bottom: 8px; font-size: 18px; }
-  .profile-copy p { font-size: 17px; line-height: 1.45; }
+  .profile-copy h2 { margin-bottom: 8px; font-size: 16px; }
+  .profile-copy p { font-size: 16px; line-height: 1.45; }
   .profile-copy br { display: none; }
 
   .work { padding: 40px 0 0; scroll-margin-top: 24px; }
