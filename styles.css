@@ -341,7 +341,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 }
 .case-card-copy { position: absolute; z-index: 2; inset: auto calc(28 * var(--unit)) calc(28 * var(--unit)) calc(31 * var(--unit)); }
 .case-card h2 { font-size: calc(var(--pill-font-size) + 2px); font-weight: 400; }
-.case-card p { margin-top: calc(9 * var(--unit)); min-height: 2.4em; max-inline-size: 90%; font-size: calc(20 * var(--unit)); line-height: 1.2; text-wrap: balance; opacity: .9; }
+.case-card p { margin-top: calc(9 * var(--unit)); min-height: 2.4em; max-inline-size: 90%; font-size: 16px; line-height: 1.2; text-wrap: balance; opacity: .9; }
 .case-card[data-project="context"] p { white-space: pre-line; text-wrap: wrap; }
 .profile-copy p, .case-card p { font-weight: 400; }
 
@@ -352,7 +352,6 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
   .profiles .pill:nth-child(2) { width: calc(94.5 * var(--unit) * .98 + 2px); }
   .profiles .pill:nth-child(3) { width: calc(151.5 * var(--unit) * .98 + 2px); }
   .avatar { border-radius: calc(27 * .88 * var(--unit)); }
-  .case-card p { font-size: calc(19 * var(--unit)); }
 }
 
 .about {
