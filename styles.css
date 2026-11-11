@@ -161,7 +161,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .identity-title { align-self: start; padding-left: calc(9 * var(--unit)); padding-top: 0; }
 .identity h1 { font-size: calc(29 * var(--unit) - 4px); font-weight: 400; line-height: 1.3; text-transform: uppercase; }
 .identity h1 span { font-size: 1.15em; }
-.identity-title p { margin-top: 3px; color: #b7b7b7; }
+.identity-title p { margin-top: 7px; color: #b7b7b7; }
 .identity-title p {
   font-family: "Portfolio Suisse", sans-serif;
   font-size: var(--profile-text-size);
@@ -213,7 +213,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 }
 .profile-copy p {
   font-family: "Portfolio Suisse Book", sans-serif;
-  font-size: var(--profile-text-size);
+  font-size: calc(20 * var(--unit));
   line-height: 1.25;
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
@@ -392,6 +392,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
   .home { --home-scale: .95px; }
   .profile { padding-left: calc(var(--edge) + 30px); }
   .profile-copy { gap: calc(30 * var(--unit) + 20px); }
+  .profile-copy p { font-size: calc((20 * var(--unit) - 2px) * 1.02 + 2px); }
   .case-card { --card-scale: calc(.97 * 1.02); }
 }
 
@@ -565,14 +566,14 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .identity .avatar-slot .avatar { animation: none; rotate: 0deg; transform: none; transition: none; }
   .identity-title { align-self: start; padding: 0; }
   .identity h1 { max-width: 360px; font-size: 27px; line-height: 1.2; }
-  .identity-title p { margin-top: 8px; line-height: 24px; }
+  .identity-title p { margin-top: 12px; line-height: 24px; }
   .identity-title p span { display: block; white-space: nowrap; }
   .profiles { flex-wrap: wrap; gap: 8px; }
   .profiles .pill:nth-child(n) { width: auto; min-height: 46px; padding: 11px 20px; font-size: 18px; line-height: 24px; }
   .profiles [data-contact="dprofile"] { display: none; }
   .profile-copy { max-width: 620px; margin-top: 42px; gap: 44px; }
   .profile-copy h2 { margin-bottom: 8px; font-size: 16px; }
-  .profile-copy p { font-size: 16px; line-height: 1.45; }
+  .profile-copy p { font-size: 17px; line-height: 1.45; }
   .profile-copy br { display: none; }
 
   .work { padding: 40px 0 0; scroll-margin-top: 24px; }
