@@ -76,12 +76,12 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 }
 
 .identity {
-  --avatar-size: calc(215 * .95 * .8 * var(--unit));
+  --avatar-size: calc(215 * .95 * .88 * var(--unit));
   display: grid;
-  grid-template-columns: calc(215 * .8 * var(--unit)) minmax(0, 1fr);
+  grid-template-columns: calc(215 * .88 * var(--unit)) minmax(0, 1fr);
   grid-template-rows: 1fr auto;
-  min-height: calc(217 * .8 * var(--unit));
-  padding-bottom: calc(217 * .8 * var(--unit) - var(--avatar-size));
+  min-height: calc(217 * .88 * var(--unit));
+  padding-bottom: calc(217 * .88 * var(--unit) - var(--avatar-size));
   gap: 0 calc(18 * var(--unit));
 }
 
@@ -301,8 +301,11 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .profile-copy p, .case-card p { font-weight: 400; }
 
 @media (min-width: 1024px) {
-  .profiles .pill, .dock .pill { font-size: calc(var(--pill-font-size) + 2px); }
-  .avatar { border-radius: calc(27 * .8 * var(--unit)); }
+  .profiles .pill, .dock .pill { padding-block: calc(10 * var(--unit) + 1px); }
+  .profiles .pill:nth-child(1) { width: calc(166.5 * var(--unit) * .98 + 2px); }
+  .profiles .pill:nth-child(2) { width: calc(94.5 * var(--unit) * .98 + 2px); }
+  .profiles .pill:nth-child(3) { width: calc(151.5 * var(--unit) * .98 + 2px); }
+  .avatar { border-radius: calc(27 * .88 * var(--unit)); }
   .case-card p { font-size: calc(19 * var(--unit)); }
 }
 
@@ -335,6 +338,10 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 }
 .dock .pill { min-width: calc(154.625 * var(--unit)); transition: background-color .18s ease, color .18s ease, filter .18s ease; }
 .dock .pill[href="#cases"] { min-width: calc(123.625 * var(--unit)); }
+@media (min-width: 1024px) {
+  .dock .pill { min-width: calc(154.625 * var(--unit) + 2px); }
+  .dock .pill[href="#cases"] { min-width: calc(123.625 * var(--unit) + 2px); }
+}
 @media (min-width: 1600px) {
   .home { --home-scale: .95px; }
   .profile { --profile-text-size: calc((20 * var(--unit) - 2px) * 1.02); padding-left: calc(var(--edge) + 30px); }
