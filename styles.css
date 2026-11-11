@@ -500,7 +500,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .work-heading { display: block; margin: 0 var(--edge) 36px; font-size: 25px; font-weight: 400; }
   .case-track {
     display: flex;
-    gap: 10px;
+    gap: 6px;
     padding: 0 var(--edge);
     overflow-x: auto;
     mask-image: none;
@@ -581,7 +581,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .profiles { grid-column: 1 / -1; }
   .profiles .pill:nth-child(n) { flex: 1; padding-inline: 12px; }
   .project-notes, .gallery { grid-template-columns: minmax(0, 1fr); }
-  .case-track { gap: 10px; }
+  .case-track { gap: 6px; }
   .case-card { flex-basis: 90vw; aspect-ratio: 471.31 / 650; }
   .case-card-copy { inset: auto 22px 24px; }
   .case-card p { min-height: 0; }
