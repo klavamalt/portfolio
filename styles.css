@@ -169,6 +169,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .identity h1 span { font-size: 1.15em; }
 .identity-title p { margin-top: 3px; color: #b7b7b7; }
 .identity-title p { font-size: var(--profile-text-size); }
+.identity-title .profile-location { margin-top: 0; }
 .profiles { display: flex; gap: calc(13.5 * var(--unit)); }
 
 .pill {
