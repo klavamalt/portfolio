@@ -203,7 +203,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .profile-copy h2, .about-copy h2 { margin-bottom: calc(7 * var(--unit)); font-size: calc(20.25 * var(--unit)); font-weight: 400; opacity: .76; }
 .profile-copy h2 {
   font-family: "Portfolio Suisse", sans-serif;
-  font-size: calc(18 * var(--unit) - 2px);
+  font-size: calc(18 * var(--unit));
   font-weight: 400;
   color: #fff;
   opacity: .7;
@@ -391,7 +391,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
   .home { --home-scale: .95px; }
   .profile { --profile-text-size: calc((20 * var(--unit) - 2px) * 1.02); padding-left: calc(var(--edge) + 30px); }
   .profile-copy { gap: calc(30 * var(--unit) + 20px); }
-  .profile-copy h2 { font-size: var(--profile-text-size); }
+  .profile-copy h2 { font-size: calc(var(--profile-text-size) + 2px); }
   .case-card { --card-scale: calc(.97 * 1.02); }
 }
 
@@ -571,7 +571,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .profiles .pill:nth-child(n) { width: auto; min-height: 46px; padding: 11px 20px; font-size: 18px; line-height: 24px; }
   .profiles [data-contact="dprofile"] { display: none; }
   .profile-copy { max-width: 620px; margin-top: 42px; gap: 44px; }
-  .profile-copy h2 { margin-bottom: 8px; font-size: 16px; }
+  .profile-copy h2 { margin-bottom: 8px; font-size: 18px; }
   .profile-copy p { font-size: 17px; line-height: 1.45; }
   .profile-copy br { display: none; }
 
