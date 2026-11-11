@@ -219,11 +219,13 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
   text-align: left;
   cursor: pointer;
   -webkit-font-smoothing: antialiased;
+  transition: color .18s ease;
 }
-.email-copy kbd { display: inline-block; margin-inline: 4px; padding: 0 6px; border: 1px solid #444; border-bottom-width: 3px; border-radius: 6px; background: #252525; color: #e8e8e8; font: inherit; line-height: 1.2; }
-.email-copy:hover { color: #e8e8e8; }
-.email-copy-mobile, .email-copy-feedback:empty { display: none; }
-.email-copy.is-copied .email-copy-label { display: none; }
+.email-copy kbd { display: inline-block; margin-inline: 4px; padding: 0 6px; border: 1px solid #444; border-bottom-width: 3px; border-radius: 6px; background: #252525; color: #b7b7b7; font: inherit; line-height: 1.2; transition: transform .15s ease, background-color .15s ease, color .15s ease; }
+.email-copy:hover { color: #858585; }
+.email-copy:hover kbd { transform: translateY(1px); background: #202020; color: #858585; }
+.email-copy:active kbd, .email-copy.is-pressed kbd { transform: translateY(2px); background: #181818; box-shadow: inset 0 1px 3px #0008; }
+.email-copy-mobile { display: none; }
 @media (max-width: 1023px) {
   .email-copy-desktop { display: none; }
   .email-copy-mobile { display: inline; }

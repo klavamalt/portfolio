@@ -424,19 +424,24 @@ const avatar = avatarSlot.querySelector('.avatar');
 const emailCopy = document.querySelector('.email-copy');
 let emailCopyTimer;
 async function copyEmail() {
-  const feedback = emailCopy.querySelector('.email-copy-feedback');
+  emailCopy.classList.add('is-pressed');
+  clearTimeout(emailCopyTimer);
+  emailCopyTimer = setTimeout(() => emailCopy.classList.remove('is-pressed'), 180);
   try {
     await navigator.clipboard.writeText('emi4kaitslow@icloud.com');
-    feedback.textContent = 'Почта скопирована';
   } catch {
-    feedback.textContent = 'emi4kaitslow@icloud.com';
+    // Local file previews may not expose the Clipboard API.
+    const field = document.createElement('textarea');
+    field.value = 'emi4kaitslow@icloud.com';
+    field.readOnly = true;
+    field.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0';
+    const focused = document.activeElement;
+    document.body.append(field);
+    field.select();
+    document.execCommand('copy');
+    field.remove();
+    focused?.focus({ preventScroll: true });
   }
-  emailCopy.classList.add('is-copied');
-  clearTimeout(emailCopyTimer);
-  emailCopyTimer = setTimeout(() => {
-    emailCopy.classList.remove('is-copied');
-    feedback.textContent = '';
-  }, 2500);
 }
 emailCopy.addEventListener('click', copyEmail);
 window.addEventListener('keydown', event => {
