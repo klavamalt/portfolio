@@ -164,7 +164,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .identity-title p { margin-top: 7px; color: #b7b7b7; }
 .identity-title p {
   font-family: "Portfolio Suisse Book", sans-serif;
-  font-size: var(--profile-text-size);
+  font-size: 18px;
   line-height: 1.32;
   font-weight: 400;
   font-synthesis: none;
@@ -342,7 +342,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 }
 .case-card-copy { position: absolute; z-index: 2; inset: auto calc(28 * var(--unit)) calc(28 * var(--unit)) calc(31 * var(--unit)); }
 .case-card h2 { font-size: calc(var(--pill-font-size) + 2px); font-weight: 400; }
-.case-card p { margin-top: calc(9 * var(--unit)); min-height: 2.4em; max-inline-size: 90%; font-size: 16px; line-height: 1.2; text-wrap: balance; opacity: .9; }
+.case-card p { margin-top: calc(9 * var(--unit)); min-height: 2.4em; max-inline-size: 90%; font-size: 18px; line-height: 1.2; text-wrap: balance; opacity: .9; }
 .case-card[data-project="context"] p { white-space: pre-line; text-wrap: wrap; }
 .profile-copy p, .case-card p { font-weight: 400; }
 .case-card p {
@@ -600,7 +600,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .case-card { flex: 0 0 min(86vw, 440px); border-radius: 26px; }
   .case-card-copy { inset: auto 24px 24px; }
   .case-card h2 { font-size: 20px; line-height: 1.25; }
-  .case-card p { margin-top: 10px; max-inline-size: 100%; font-size: 16px; line-height: 1.35; }
+  .case-card p { margin-top: 10px; max-inline-size: 100%; font-size: 18px; line-height: 1.35; }
   .dock { width: calc(212px + 2 * var(--mobile-nav-side-padding)); max-width: calc(100% - 32px); height: var(--mobile-nav-height); align-items: center; gap: 8px; padding: var(--mobile-nav-padding) var(--mobile-nav-side-padding); background: var(--mobile-nav-surface); box-shadow: var(--mobile-nav-shadow); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
   .dock .pill { height: var(--mobile-nav-button-height); min-height: var(--mobile-nav-button-height); padding: 8px 6px; font-size: 17px; line-height: 20px; }
   .dock .pill:nth-child(n) { min-width: 0; }
@@ -669,7 +669,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .avatar-slot { grid-row: 1; }
   .avatar { border-radius: 18px; }
   .identity h1 { font-size: clamp(18px, 5.1vw, 24px); }
-  .identity-title p { font-size: 16px; }
+  .identity-title p { font-size: 18px; }
   .profiles { grid-column: 1 / -1; }
   .profiles .pill:nth-child(n) { flex: 1; padding-inline: 12px; }
   .project-notes, .gallery { grid-template-columns: minmax(0, 1fr); }
