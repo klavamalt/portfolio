@@ -497,8 +497,13 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .profile-copy br { display: none; }
 
   .work { padding: 40px 0 0; scroll-margin-top: 24px; }
-  .work-heading { display: block; margin: 0 var(--edge) 36px; font-size: 25px; font-weight: 400; }
-  .work-heading::after { content: '→'; display: inline-block; margin-left: 12px; color: #888; }
+  .work-heading { display: flex; align-items: center; justify-content: space-between; margin: 0 var(--edge) 36px; font-size: 25px; font-weight: 400; }
+  .work-heading::after {
+    content: '';
+    flex: 0 0 48px;
+    height: 20px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='20' viewBox='0 0 48 20' fill='none'%3E%3Cpath d='M1 10h45m-8-8 8 8-8 8' stroke='%23888' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
   .case-track {
     display: flex;
     gap: 6px;
