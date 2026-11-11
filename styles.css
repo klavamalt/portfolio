@@ -237,6 +237,13 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
   .case-track.has-card-motion .case-card:focus-visible { opacity: 1; transform: none; }
 }
 
+@media (max-width: 1023px) and (prefers-reduced-motion: no-preference) {
+  .case-track.has-card-motion .case-card {
+    transform: perspective(1100px) rotateY(var(--card-tilt, 0deg)) scale(var(--card-depth, 1));
+    transform-origin: center;
+  }
+}
+
 @keyframes case-light-sweep {
   from { background-position: 140% 50%; }
   to { background-position: var(--card-light, 50%) 50%; }
@@ -491,7 +498,6 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
 
   .work { padding: 40px 0 0; scroll-margin-top: 24px; }
   .work-heading { display: block; margin: 0 var(--edge) 36px; font-size: 25px; font-weight: 400; }
-  .work-heading::after { content: 'Листай →'; float: right; margin-top: 6px; font-size: 14px; color: #888; }
   .case-track {
     display: flex;
     gap: 10px;
@@ -575,7 +581,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .profiles { grid-column: 1 / -1; }
   .profiles .pill:nth-child(n) { flex: 1; padding-inline: 12px; }
   .project-notes, .gallery { grid-template-columns: minmax(0, 1fr); }
-  .case-track { gap: 6px; }
+  .case-track { gap: 10px; }
   .case-card { flex-basis: 90vw; aspect-ratio: 471.31 / 650; }
   .case-card-copy { inset: auto 22px 24px; }
   .case-card p { min-height: 0; }

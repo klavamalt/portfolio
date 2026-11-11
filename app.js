@@ -211,7 +211,7 @@ const caseRevealObserver = new IntersectionObserver(entries => {
 
 function updateCaseMotion() {
   caseMotionFrame = 0;
-  if (home.hidden || mobileLayout.matches || reducedMotion.matches || document.hidden) return;
+  if (home.hidden || reducedMotion.matches || document.hidden) return;
   const viewport = track.getBoundingClientRect();
   if (viewport.bottom <= 0 || viewport.top >= window.innerHeight || !viewport.width) return;
   const center = viewport.left + viewport.width / 2;
@@ -235,11 +235,12 @@ function syncCaseMotion() {
   cancelAnimationFrame(caseMotionFrame);
   caseMotionFrame = 0;
   caseRevealObserver.disconnect();
-  const enabled = !home.hidden && !mobileLayout.matches && !reducedMotion.matches && !document.body.classList.contains('is-loading');
+  const enabled = !home.hidden && !reducedMotion.matches && !document.body.classList.contains('is-loading');
   track.classList.toggle('has-card-motion', enabled);
   if (!enabled) return;
   for (const card of track.children) {
-    if (!card.classList.contains('is-revealed')) caseRevealObserver.observe(card);
+    if (mobileLayout.matches) card.classList.add('is-revealed');
+    else if (!card.classList.contains('is-revealed')) caseRevealObserver.observe(card);
   }
   requestCaseMotion();
 }
