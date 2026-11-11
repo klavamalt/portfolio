@@ -163,7 +163,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .identity h1 span { font-size: 1.15em; }
 .identity-title p { margin-top: 7px; color: #b7b7b7; }
 .identity-title p {
-  font-family: "Portfolio Suisse", sans-serif;
+  font-family: "Portfolio Suisse Book", sans-serif;
   font-size: var(--profile-text-size);
   line-height: 1.32;
   font-weight: 400;
@@ -203,7 +203,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .profile-copy { margin-top: calc(48 * var(--unit)); max-width: calc(598 * var(--unit)); gap: calc(30 * var(--unit) + 10px); }
 .profile-copy h2, .about-copy h2 { margin-bottom: calc(7 * var(--unit)); font-size: calc(20.25 * var(--unit)); font-weight: 400; opacity: .76; }
 .profile-copy h2 {
-  font-family: "Portfolio Suisse", sans-serif;
+  font-family: "Portfolio Suisse Book", sans-serif;
   font-size: var(--profile-text-size);
   font-weight: 400;
   color: #fff;
@@ -346,7 +346,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .case-card[data-project="context"] p { white-space: pre-line; text-wrap: wrap; }
 .profile-copy p, .case-card p { font-weight: 400; }
 .case-card p {
-  font-family: "Portfolio Suisse", sans-serif;
+  font-family: "Portfolio Suisse Book", sans-serif;
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
