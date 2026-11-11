@@ -469,6 +469,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
 .art img.art-crop { inset: auto; object-fit: fill; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
+.project-menu { row-gap: 4px; }
 .project-menu button {
   position: relative;
   display: flex;
