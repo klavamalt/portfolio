@@ -392,6 +392,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
   .profile { --profile-text-size: calc((20 * var(--unit) - 2px) * 1.02); padding-left: calc(var(--edge) + 30px); }
   .profile-copy { gap: calc(30 * var(--unit) + 20px); }
   .profile-copy h2 { font-size: calc(var(--profile-text-size) + 2px); }
+  .email-copy { font-size: calc(var(--profile-text-size) + 2px); }
   .case-card { --card-scale: calc(.97 * 1.02); }
 }
 
