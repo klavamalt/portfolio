@@ -55,12 +55,6 @@ body.is-loading { overflow: hidden; }
 .site-loader.is-finished { opacity: 0; pointer-events: none; }
 @media (prefers-reduced-motion: no-preference) {
   .site-loader { transition: opacity .5s ease; }
-  .avatar-slot:not(:hover) .avatar { animation: avatar-sway 5s ease-in-out infinite; }
-}
-@keyframes avatar-sway {
-  0%, 100% { rotate: 0deg; }
-  25% { rotate: 1.8deg; }
-  75% { rotate: -1.8deg; }
 }
 
 body.is-home { overflow: hidden; overscroll-behavior: none; }
