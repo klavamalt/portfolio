@@ -494,6 +494,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   content: "";
   flex: 0 0 30px;
   height: 2px;
+  border-radius: 999px;
   background: #ddd;
   transition: flex-basis .24s ease-in-out, background-color .24s ease-in-out;
 }
@@ -504,6 +505,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   left: 0;
   width: 19px;
   height: 2px;
+  border-radius: 999px;
   background: #ddd;
   box-shadow: 0 10px #ddd;
   pointer-events: none;
