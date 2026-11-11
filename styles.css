@@ -509,7 +509,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   box-shadow: 0 10px #ddd;
   pointer-events: none;
 }
-.project-menu button:is(:hover, :focus-visible) { color: #555; }
+.project-menu button:is(:hover, :focus-visible) { color: #2f2f2f; }
 .project-menu button[aria-current] { color: #2f2f2f; }
 .project-menu button[aria-current]::before { flex-basis: 46px; background-color: #2f2f2f; }
 
