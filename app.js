@@ -431,6 +431,14 @@ avatarSlot.addEventListener('pointermove', event => {
   avatar.style.setProperty('--avatar-tilt-y', (x - 0.5) * 18 + 'deg');
   avatar.style.setProperty('--avatar-glare-x', x * 100 + '%');
   avatar.style.setProperty('--avatar-glare-y', y * 100 + '%');
+  avatar.style.setProperty('--avatar-shift-x', (x - 0.5) * 40 + 'px');
+  avatar.style.setProperty('--avatar-shift-y', (y - 0.5) * 40 + 'px');
+});
+
+avatarSlot.addEventListener('pointerleave', () => {
+  for (const property of ['tilt-x', 'tilt-y', 'glare-x', 'glare-y', 'shift-x', 'shift-y']) {
+    avatar.style.removeProperty('--avatar-' + property);
+  }
 });
 
 window.addEventListener('wheel', event => {

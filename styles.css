@@ -96,6 +96,8 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
   background: #fff;
 }
 
+.avatar-holo { display: none; }
+
 .avatar::after {
   content: "";
   position: absolute;
@@ -115,17 +117,40 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
     transition-duration: .12s;
     box-shadow: 0 10px 24px #0004;
   }
-  .avatar::before {
-    content: "";
+  .avatar-holo {
+    display: block;
     position: absolute;
     z-index: 1;
     inset: 0;
+    overflow: hidden;
+    border-radius: inherit;
     pointer-events: none;
-    background: radial-gradient(circle at var(--avatar-glare-x, 50%) var(--avatar-glare-y, 50%), #fff8, #ffd4ed30 33%, transparent 66%);
+    mix-blend-mode: color-dodge;
     opacity: 0;
-    transition: opacity .24s ease;
+    transition: opacity .3s ease;
   }
-  .avatar-slot:hover .avatar::before { opacity: 1; }
+  .avatar-slot:hover .avatar-holo { opacity: .5; }
+  .avatar-holo > span { position: absolute; inset: -30%; }
+  .avatar-holo-pattern { background: url('assets/avatar-holo-pattern.png') center / cover; mix-blend-mode: hue; opacity: .2; }
+  .avatar-holo-rainbow {
+    background: linear-gradient(315deg, #ff7773 10%, #ffed5f 25%, #a8ff5f 41%, #83fff7 54%, #77dddf 69%, #7894ff 80%, #d875ff 89%, #ff7773 100%);
+    mix-blend-mode: hue;
+    opacity: .8;
+    transform: translate(var(--avatar-shift-x, 0px), var(--avatar-shift-y, 0px)) rotate(180deg);
+  }
+  .avatar-holo-diagonal {
+    background: repeating-linear-gradient(315deg, #0e152e 0%, #8fa3a3 6%, #8fa3a3 10%, #0e152e 25%, #8fa3a3 34%, #8fa3a3 35%, #0e152e 42%, #8fa3a3 52%, #667478 61%, #0e152e 66%, #8fa3a3 75%, #8fa3a3 80%, #0e152e 86%, #8fa3a3 90%, #0e152e 100%);
+    background-size: 150% 150%;
+    background-position: var(--avatar-glare-x, 50%) var(--avatar-glare-y, 50%);
+    mix-blend-mode: hard-light;
+  }
+  .avatar-holo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at var(--avatar-glare-x, 50%) var(--avatar-glare-y, 50%), #fff9, transparent 65%);
+    mix-blend-mode: overlay;
+  }
 }
 
 .avatar img { position: absolute; max-width: none; }
