@@ -471,7 +471,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
 
 .project-menu { row-gap: 4px; }
 .project-link-holder { margin-top: 20px; }
-.project-site-link { display: inline-block; padding: 6px 10px; border-radius: 6px; background: #f0f0f0; color: #888; font: 400 14px/1.3 "Portfolio Suisse Book", sans-serif; transition: background-color .18s ease, color .18s ease; }
+.project-site-link { display: inline-block; padding: 6px 10px; border-radius: 6px; background: #f0f0f0; color: #a5a5a5; font: 400 14px/1.3 "Portfolio Suisse Book", sans-serif; transition: background-color .18s ease, color .18s ease; }
 .project-site-link:is(:hover, :focus-visible) { background: #e5e5e5; color: #555; }
 .project-menu button {
   position: relative;
@@ -509,8 +509,8 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   pointer-events: none;
 }
 .project-menu button:is(:hover, :focus-visible) { color: #555; }
-.project-menu button[aria-current] { color: #111; }
-.project-menu button[aria-current]::before { flex-basis: 46px; background-color: #111; }
+.project-menu button[aria-current] { color: #2f2f2f; }
+.project-menu button[aria-current]::before { flex-basis: 46px; background-color: #2f2f2f; }
 
 @media (prefers-reduced-motion: reduce) {
   .dock .pill, .project-menu button, .project-menu button::before { transition: none; }
