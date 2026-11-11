@@ -76,12 +76,12 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 }
 
 .identity {
-  --avatar-size: calc(215 * .95 * var(--unit));
+  --avatar-size: calc(215 * .95 * .8 * var(--unit));
   display: grid;
-  grid-template-columns: calc(215 * var(--unit)) minmax(0, 1fr);
+  grid-template-columns: calc(215 * .8 * var(--unit)) minmax(0, 1fr);
   grid-template-rows: 1fr auto;
-  min-height: calc(217 * var(--unit));
-  padding-bottom: calc(217 * var(--unit) - var(--avatar-size));
+  min-height: calc(217 * .8 * var(--unit));
+  padding-bottom: calc(217 * .8 * var(--unit) - var(--avatar-size));
   gap: 0 calc(18 * var(--unit));
 }
 
@@ -301,6 +301,8 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .profile-copy p, .case-card p { font-weight: 400; }
 
 @media (min-width: 1024px) {
+  .profiles .pill, .dock .pill { font-size: calc(var(--pill-font-size) + 2px); }
+  .avatar { border-radius: calc(27 * .8 * var(--unit)); }
   .case-card p { font-size: calc(19 * var(--unit)); }
 }
 
