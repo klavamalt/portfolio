@@ -168,7 +168,14 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .identity h1 { font-size: calc(29 * var(--unit) - 4px); font-weight: 400; line-height: 1.3; text-transform: uppercase; }
 .identity h1 span { font-size: 1.15em; }
 .identity-title p { margin-top: 3px; color: #b7b7b7; }
-.identity-title p { font-size: var(--profile-text-size); }
+.identity-title p {
+  font-family: "Portfolio Suisse Book", sans-serif;
+  font-size: var(--profile-text-size);
+  font-weight: 400;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 .identity-title .profile-location { margin-top: 0; }
 .profiles { display: flex; gap: calc(13.5 * var(--unit)); }
 
@@ -198,7 +205,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 .pill:hover, .dock .pill:focus-visible { filter: brightness(1.06); }
 
 .profile-copy, .about-copy { display: grid; gap: calc(30 * var(--unit)); }
-.profile-copy { margin-top: calc(48 * var(--unit)); max-width: calc(598 * var(--unit)); }
+.profile-copy { margin-top: calc(48 * var(--unit)); max-width: calc(598 * var(--unit)); gap: calc(30 * var(--unit) + 20px); }
 .profile-copy h2, .about-copy h2 { margin-bottom: calc(7 * var(--unit)); font-size: calc(20.25 * var(--unit)); font-weight: 400; opacity: .76; }
 .profile-copy h2 {
   font-family: "Portfolio Suisse", sans-serif;
@@ -391,7 +398,7 @@ body.is-home { overflow: hidden; overscroll-behavior: none; }
 @media (min-width: 1600px) {
   .home { --home-scale: .95px; }
   .profile { --profile-text-size: calc((20 * var(--unit) - 2px) * 1.02); padding-left: calc(var(--edge) + 30px); }
-  .profile-copy { gap: calc(30 * var(--unit) + 10px); }
+  .profile-copy { gap: calc(30 * var(--unit) + 30px); }
   .profile-copy h2 { font-size: var(--profile-text-size); }
   .case-card { --card-scale: calc(.97 * 1.02); }
 }
@@ -571,7 +578,7 @@ body:has(#project:not([hidden])) .dock .pill[href="#cases"]:active { background-
   .profiles { flex-wrap: wrap; gap: 8px; }
   .profiles .pill:nth-child(n) { width: auto; min-height: 46px; padding: 11px 20px; font-size: 18px; line-height: 24px; }
   .profiles [data-contact="dprofile"] { display: none; }
-  .profile-copy { max-width: 620px; margin-top: 42px; gap: 34px; }
+  .profile-copy { max-width: 620px; margin-top: 42px; gap: 54px; }
   .profile-copy h2 { margin-bottom: 8px; font-size: 16px; }
   .profile-copy p { font-size: 17px; line-height: 1.45; }
   .profile-copy br { display: none; }
